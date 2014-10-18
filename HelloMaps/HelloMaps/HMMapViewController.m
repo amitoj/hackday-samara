@@ -8,6 +8,8 @@
 
 #import "HMMapViewController.h"
 #import "HMFriendsListController.h"
+#import "HMLocationTracker.h"
+#import "HMSessionManager.h"
 
 @interface HMMapViewController ()
 {
@@ -24,6 +26,8 @@
 @property (nonatomic, strong) CLLocationManager* locationManager;
 @property (weak, nonatomic) IBOutlet UIView *blueView;
 @property (weak, nonatomic) IBOutlet UILabel *notificationsCountLabel;
+
+@property (nonatomic, strong) HMLocationTracker *locationTracker;
 @end
 
 @implementation HMMapViewController
@@ -58,6 +62,18 @@
     [self.mapView setMapType:MKMapTypeStandard];
     [self.mapView setZoomEnabled:YES];
     [self.mapView setScrollEnabled:YES];
+    
+    
+    self.locationTracker = [[HMLocationTracker alloc] init];
+    [self.locationTracker setLocationUpdatedInForeground:^ (CLLocation *location) {
+        [[HMSessionManager sharedInstance] setUserDataWithCompletionBlock:^(NSURLSessionDataTask *task, NSError *error) {
+            }];
+    }];
+    [self.locationTracker setLocationUpdatedInBackground:^ (CLLocation *location) {
+        [[HMSessionManager sharedInstance] setUserDataWithCompletionBlock:^(NSURLSessionDataTask *task, NSError *error) {
+        }];
+    }];
+    [self.locationTracker startUpdatingLocation];
     
 }
 

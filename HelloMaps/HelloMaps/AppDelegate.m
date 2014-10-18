@@ -10,16 +10,14 @@
 #import "VKSdk.h"
 #import "HMAuthorizationController.h"
 #import "HMMapViewController.h"
-#import "AFHTTPSessionManager.h"
+#import "HMSessionManager.h"
+#import "HMLocationTracker.h"
 
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
-{
-    AFHTTPSessionManager * _sessionManager;
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -37,7 +35,30 @@
             }
         }
     }
-    _sessionManager = [[AFHTTPSessionManager alloc] init];
+    else
+    {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+    if ([launchOptions objectForKey:UIApplicationLaunchOptionsLocationKey])
+    {
+        self.locationTracker = [[HMLocationTracker alloc] init];
+        __weak HMLocationTracker *lc = self.locationTracker;
+        [self.locationTracker setLocationUpdatedInBackground:^(CLLocation *location) {
+            //тестовый блок, будет показывать local notification с координатами
+            UILocalNotification *notification = [[UILocalNotification alloc] init];
+            notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:15];
+            notification.alertBody = [NSString stringWithFormat:@"New location: %@", location];
+            [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+            //отправка данных после входа в систему
+            [[HMSessionManager sharedInstance] setUserDataWithCompletionBlock:^(NSURLSessionDataTask *task, NSError *error) {
+                [lc endBackgroundTask];
+            }];
+
+        }];
+        [self.locationTracker startUpdatingLocation];
+    }
     return YES;
 }
 
@@ -116,14 +137,13 @@
         }
     }
     
-    //отправка данных после входа в систему
-    NSURLSessionDataTask * task = [_sessionManager POST:@""
-                                             parameters:nil
-                                                success:^(NSURLSessionDataTask *task, id responseObject) {
-                                                    
-                                                } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                                                    
-                                                }];
+    VKRequest * userReq = [[VKApi users] get];
+    [userReq executeWithResultBlock:^(VKResponse *response) {
+        [[NSUserDefaults standardUserDefaults] setObject:response.json[0] forKey:@"user"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    } errorBlock:^(NSError *error) {
+        
+    }];
 }
 
 @end
