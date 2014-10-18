@@ -7,6 +7,7 @@
 //
 
 #import "HMAuthorizationController.h"
+#import "HMFriendsListController.h"
 
 @interface HMAuthorizationController ()
 
@@ -14,23 +15,40 @@
 
 @implementation HMAuthorizationController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+}
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (IBAction)vkLoginBtClick:(id)sender
+{
     [VKSdk initializeWithDelegate:self andAppId:VK_APP_ID];
-    if ([VKSdk wakeUpSession])
-    {
-        [VKSdk authorize:@[VK_PER_FRIENDS, VK_PER_MESSAGES]];
-    }
+    [VKSdk authorize:@[VK_PER_FRIENDS, VK_PER_MESSAGES]];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark - Private methods
 
+- (void)showFriendsList
+{
+    HMFriendsListController * friendsListController = [HMFriendsListController new];
+    [friendsListController loadFriendsListFromVK];
+    [self.navigationController pushViewController:friendsListController animated:YES];
+}
 
 #pragma mark - VKSdkDelegate methods
+
 - (void)vkSdkNeedCaptchaEnter:(VKError *)captchaError;
 {
     NSLog(@"%@", NSStringFromSelector(_cmd));
@@ -54,6 +72,7 @@
 - (void)vkSdkReceivedNewToken:(VKAccessToken *)newToken;
 {
     NSLog(@"%@", NSStringFromSelector(_cmd));
+    [self showFriendsList];
 }
 
 @end
