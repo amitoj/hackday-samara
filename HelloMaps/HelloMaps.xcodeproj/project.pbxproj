@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64E578C67BD74057B4214ECB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53E0DC3C33054917A369E7D3 /* libPods.a */; };
 		86C712DD19F1AD9D00B48369 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C712DC19F1AD9D00B48369 /* main.m */; };
 		86C712E019F1AD9D00B48369 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C712DF19F1AD9D00B48369 /* AppDelegate.m */; };
 		86C712E319F1AD9D00B48369 /* HelloMaps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86C712E119F1AD9D00B48369 /* HelloMaps.xcdatamodeld */; };
@@ -28,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19E2CA85B24B4CC382FB92C4 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		53E0DC3C33054917A369E7D3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		86C712D719F1AD9D00B48369 /* HelloMaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloMaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86C712DB19F1AD9D00B48369 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86C712DC19F1AD9D00B48369 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -42,6 +45,8 @@
 		86C712F319F1AD9D00B48369 /* HelloMapsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelloMapsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		86C712F819F1AD9D00B48369 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86C712F919F1AD9D00B48369 /* HelloMapsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloMapsTests.m; sourceTree = "<group>"; };
+		86C7130619F2214800B48369 /* HMConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMConsts.h; sourceTree = "<group>"; };
+		86C7130719F221DC00B48369 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64E578C67BD74057B4214ECB /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,12 +68,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A25BB64F7354BEB92261167 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				53E0DC3C33054917A369E7D3 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		86C712CE19F1AD9D00B48369 = {
 			isa = PBXGroup;
 			children = (
 				86C712D919F1AD9D00B48369 /* HelloMaps */,
 				86C712F619F1AD9D00B48369 /* HelloMapsTests */,
 				86C712D819F1AD9D00B48369 /* Products */,
+				19E2CA85B24B4CC382FB92C4 /* Pods.xcconfig */,
+				7A25BB64F7354BEB92261167 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,6 +99,7 @@
 		86C712D919F1AD9D00B48369 /* HelloMaps */ = {
 			isa = PBXGroup;
 			children = (
+				86C7130519F2214800B48369 /* Common */,
 				86C712DE19F1AD9D00B48369 /* AppDelegate.h */,
 				86C712DF19F1AD9D00B48369 /* AppDelegate.m */,
 				86C712E419F1AD9D00B48369 /* ViewController.h */,
@@ -101,6 +118,7 @@
 			children = (
 				86C712DB19F1AD9D00B48369 /* Info.plist */,
 				86C712DC19F1AD9D00B48369 /* main.m */,
+				86C7130719F221DC00B48369 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -122,6 +140,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		86C7130519F2214800B48369 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				86C7130619F2214800B48369 /* HMConsts.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -129,9 +155,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 86C712FD19F1AD9D00B48369 /* Build configuration list for PBXNativeTarget "HelloMaps" */;
 			buildPhases = (
+				8277740351464F2481C7A7CD /* Check Pods Manifest.lock */,
 				86C712D319F1AD9D00B48369 /* Sources */,
 				86C712D419F1AD9D00B48369 /* Frameworks */,
 				86C712D519F1AD9D00B48369 /* Resources */,
+				2CE50957599E4A17BE3DC58B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -171,6 +199,7 @@
 				TargetAttributes = {
 					86C712D619F1AD9D00B48369 = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = D4Z93Q5V24;
 					};
 					86C712F219F1AD9D00B48369 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -216,6 +245,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2CE50957599E4A17BE3DC58B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8277740351464F2481C7A7CD /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		86C712D319F1AD9D00B48369 /* Sources */ = {
@@ -345,21 +407,31 @@
 		};
 		86C712FE19F1AD9D00B48369 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19E2CA85B24B4CC382FB92C4 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREFIX_HEADER = HelloMaps/PrefixHeader.pch;
 				INFOPLIST_FILE = HelloMaps/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		86C712FF19F1AD9D00B48369 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19E2CA85B24B4CC382FB92C4 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREFIX_HEADER = HelloMaps/PrefixHeader.pch;
 				INFOPLIST_FILE = HelloMaps/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -416,6 +488,7 @@
 				86C712FF19F1AD9D00B48369 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		86C7130019F1AD9D00B48369 /* Build configuration list for PBXNativeTarget "HelloMapsTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +497,7 @@
 				86C7130219F1AD9D00B48369 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
