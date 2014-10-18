@@ -44,12 +44,6 @@
     self.tableView.separatorInset = UIEdgeInsetsMake(0.0, 52.0, 0.0, 15.0);
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-}
-
 - (void)refresh
 {
     [self loadFriendsListFromVKWithRefresh:YES];

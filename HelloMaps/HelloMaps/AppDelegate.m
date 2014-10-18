@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "VKSdk.h"
 #import "HMAuthorizationController.h"
-#import "HMFriendsListController.h"
+#import "HMMapViewController.h"
 
 @interface AppDelegate ()
 
@@ -26,11 +26,10 @@
         if([rootViewController isKindOfClass:[UINavigationController class]])
         {
             UINavigationController * navController = (UINavigationController*)rootViewController;
-            if(![navController.topViewController isKindOfClass:[HMFriendsListController class]])
+            if(![navController.topViewController isKindOfClass:[HMMapViewController class]])
             {
-                HMFriendsListController * friendsListController = [navController.storyboard instantiateViewControllerWithIdentifier:@"HMFriendsListController"];
-                [friendsListController loadFriendsListFromVK];
-                [navController setViewControllers:@[friendsListController] animated:YES];
+                HMMapViewController * mapController = [navController.storyboard instantiateViewControllerWithIdentifier:@"HMMapViewController"];
+                [navController setViewControllers:@[mapController] animated:YES];
             }
         }
     }

@@ -7,9 +7,11 @@
 //
 
 #import "HMAuthorizationController.h"
-#import "HMFriendsListController.h"
+#import "HMMapViewController.h"
 
 @interface HMAuthorizationController ()
+@property (weak, nonatomic) IBOutlet UIView *hiddenView;
+@property (weak, nonatomic) IBOutlet UIImageView *logoView;
 
 @end
 
@@ -18,12 +20,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.hiddenView.alpha = 0.0;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+
+-(void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [super viewDidAppear:animated];
+    __weak typeof(self) weakSelf = self;
+    [UIView animateWithDuration:0.6 animations:^{
+        CGRect frame = weakSelf.logoView.frame;
+        frame.origin.y = 71.00;
+        weakSelf.logoView.frame = frame;
+    }];
+    [UIView animateWithDuration:0.6 delay:0.25 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        weakSelf.hiddenView.alpha = 1.0;
+    } completion:nil
+     ];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -40,11 +54,18 @@
 
 #pragma mark - Private methods
 
-- (void)showFriendsList
+- (void)showMainScreen
 {
-    HMFriendsListController * friendsListController = [HMFriendsListController new];
-    [friendsListController loadFriendsListFromVK];
-    [self.navigationController pushViewController:friendsListController animated:YES];
+    UIViewController * rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+    if([rootViewController isKindOfClass:[UINavigationController class]])
+    {
+        UINavigationController * navController = (UINavigationController*)rootViewController;
+        if(![navController.topViewController isKindOfClass:[HMMapViewController class]])
+        {
+            HMMapViewController * mapController = [navController.storyboard instantiateViewControllerWithIdentifier:@"HMMapViewController"];
+            [navController setViewControllers:@[mapController] animated:YES];
+        }
+    }
 }
 
 #pragma mark - VKSdkDelegate methods
@@ -73,7 +94,7 @@
 - (void)vkSdkReceivedNewToken:(VKAccessToken *)newToken;
 {
     NSLog(@"%@", NSStringFromSelector(_cmd));
-    [self showFriendsList];
+    [self showMainScreen];
 }
 
 @end

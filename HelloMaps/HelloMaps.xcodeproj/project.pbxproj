@@ -8,24 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		1890BA2E19F24506008A880C /* HMAuthorizationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1890BA2D19F24506008A880C /* HMAuthorizationController.m */; };
-		64E578C67BD74057B4214ECB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53E0DC3C33054917A369E7D3 /* libPods.a */; };
+		18B4536E19F25A6A0031B840 /* HMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B4536D19F25A6A0031B840 /* HMMapViewController.m */; };
+		18B4537019F25CE90031B840 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B4536F19F25CE90031B840 /* MapKit.framework */; };
+		18B4537219F263840031B840 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B4537119F263840031B840 /* CoreLocation.framework */; };
+		47203948B0DB43F397D2669B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53E0DC3C33054917A369E7D3 /* libPods.a */; };
+		863C9BC019F2E0DC009B4B5F /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 863C9BAF19F2E0DC009B4B5F /* sqlite3.c */; };
+		863C9BC119F2E0DC009B4B5F /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = 863C9BB119F2E0DC009B4B5F /* sqlite3_unicode.c */; };
+		863C9BC219F2E0DC009B4B5F /* SQLite3Cursor.m in Sources */ = {isa = PBXBuildFile; fileRef = 863C9BB419F2E0DC009B4B5F /* SQLite3Cursor.m */; };
+		863C9BC319F2E0DC009B4B5F /* SQLite3CursorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 863C9BB619F2E0DC009B4B5F /* SQLite3CursorWindow.m */; };
+		863C9BC419F2E0DC009B4B5F /* SQLite3Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 863C9BB819F2E0DC009B4B5F /* SQLite3Database.m */; };
+		863C9BC519F2E0DC009B4B5F /* SQLite3Query.m in Sources */ = {isa = PBXBuildFile; fileRef = 863C9BBB19F2E0DC009B4B5F /* SQLite3Query.m */; };
+		863C9BC619F2E0DC009B4B5F /* hellomaps.db.1.sql in Resources */ = {isa = PBXBuildFile; fileRef = 863C9BBE19F2E0DC009B4B5F /* hellomaps.db.1.sql */; };
+		863C9BC919F2E0ED009B4B5F /* HMDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 863C9BC819F2E0ED009B4B5F /* HMDataBase.m */; };
+		863C9BCD19F2E10D009B4B5F /* HMFriendViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 863C9BCB19F2E10D009B4B5F /* HMFriendViewCell.m */; };
+		863C9BCE19F2E10D009B4B5F /* HMFriendViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 863C9BCC19F2E10D009B4B5F /* HMFriendViewCell.xib */; };
+		863C9BD419F2E3D4009B4B5F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 863C9BD019F2E3D4009B4B5F /* LaunchScreen.xib */; };
+		863C9BD519F2E3D4009B4B5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 863C9BD219F2E3D4009B4B5F /* Main.storyboard */; };
 		86C712DD19F1AD9D00B48369 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C712DC19F1AD9D00B48369 /* main.m */; };
 		86C712E019F1AD9D00B48369 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C712DF19F1AD9D00B48369 /* AppDelegate.m */; };
 		86C712EB19F1AD9D00B48369 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86C712EA19F1AD9D00B48369 /* Images.xcassets */; };
 		86C712FA19F1AD9D00B48369 /* HelloMapsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C712F919F1AD9D00B48369 /* HelloMapsTests.m */; };
 		86C7131719F24B0300B48369 /* HMFriendsListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C7131619F24B0300B48369 /* HMFriendsListController.m */; };
-		86C7132C19F28F4300B48369 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 86C7131E19F28F4300B48369 /* sqlite3.c */; };
-		86C7132D19F28F4300B48369 /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = 86C7132019F28F4300B48369 /* sqlite3_unicode.c */; };
-		86C7132E19F28F4300B48369 /* SQLite3Cursor.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C7132319F28F4300B48369 /* SQLite3Cursor.m */; };
-		86C7132F19F28F4300B48369 /* SQLite3CursorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C7132519F28F4300B48369 /* SQLite3CursorWindow.m */; };
-		86C7133019F28F4300B48369 /* SQLite3Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C7132719F28F4300B48369 /* SQLite3Database.m */; };
-		86C7133119F28F4300B48369 /* SQLite3Query.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C7132A19F28F4300B48369 /* SQLite3Query.m */; };
-		86C7133419F291AA00B48369 /* HMDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C7133319F291AA00B48369 /* HMDataBase.m */; };
-		86C7133919F293DB00B48369 /* hellomaps.db.1.sql in Resources */ = {isa = PBXBuildFile; fileRef = 86C7133719F293DB00B48369 /* hellomaps.db.1.sql */; };
-		86C7134919F2A08E00B48369 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C7130F19F246A200B48369 /* LaunchScreen.xib */; };
-		86C7134A19F2A08E00B48369 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C7131119F246A200B48369 /* Main.storyboard */; };
-		86C7134D19F2B03A00B48369 /* HMFriendViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C7134C19F2B03A00B48369 /* HMFriendViewCell.m */; };
-		86C7134F19F2CD2200B48369 /* HMFriendViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C7134E19F2CD2200B48369 /* HMFriendViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,8 +44,36 @@
 /* Begin PBXFileReference section */
 		1890BA2C19F24506008A880C /* HMAuthorizationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMAuthorizationController.h; sourceTree = "<group>"; };
 		1890BA2D19F24506008A880C /* HMAuthorizationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMAuthorizationController.m; sourceTree = "<group>"; };
-		19E2CA85B24B4CC382FB92C4 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		18B4536B19F257910031B840 /* HMConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMConsts.h; sourceTree = "<group>"; };
+		18B4536C19F25A6A0031B840 /* HMMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMMapViewController.h; sourceTree = "<group>"; };
+		18B4536D19F25A6A0031B840 /* HMMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMMapViewController.m; sourceTree = "<group>"; };
+		18B4536F19F25CE90031B840 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		18B4537119F263840031B840 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		440F494008A1FBC9BB6C6CFE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		5189A3B2F05635C148999B14 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		53E0DC3C33054917A369E7D3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D0958D7DDA3444B9E726932 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		863C9BAF19F2E0DC009B4B5F /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3.c; sourceTree = "<group>"; };
+		863C9BB019F2E0DC009B4B5F /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3.h; sourceTree = "<group>"; };
+		863C9BB119F2E0DC009B4B5F /* sqlite3_unicode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3_unicode.c; sourceTree = "<group>"; };
+		863C9BB219F2E0DC009B4B5F /* sqlite3_unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3_unicode.h; sourceTree = "<group>"; };
+		863C9BB319F2E0DC009B4B5F /* SQLite3Cursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLite3Cursor.h; sourceTree = "<group>"; };
+		863C9BB419F2E0DC009B4B5F /* SQLite3Cursor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLite3Cursor.m; sourceTree = "<group>"; };
+		863C9BB519F2E0DC009B4B5F /* SQLite3CursorWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLite3CursorWindow.h; sourceTree = "<group>"; };
+		863C9BB619F2E0DC009B4B5F /* SQLite3CursorWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLite3CursorWindow.m; sourceTree = "<group>"; };
+		863C9BB719F2E0DC009B4B5F /* SQLite3Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLite3Database.h; sourceTree = "<group>"; };
+		863C9BB819F2E0DC009B4B5F /* SQLite3Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLite3Database.m; sourceTree = "<group>"; };
+		863C9BB919F2E0DC009B4B5F /* sqlite3ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3ext.h; sourceTree = "<group>"; };
+		863C9BBA19F2E0DC009B4B5F /* SQLite3Query.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLite3Query.h; sourceTree = "<group>"; };
+		863C9BBB19F2E0DC009B4B5F /* SQLite3Query.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLite3Query.m; sourceTree = "<group>"; };
+		863C9BBE19F2E0DC009B4B5F /* hellomaps.db.1.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hellomaps.db.1.sql; sourceTree = "<group>"; };
+		863C9BC719F2E0ED009B4B5F /* HMDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMDataBase.h; sourceTree = "<group>"; };
+		863C9BC819F2E0ED009B4B5F /* HMDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMDataBase.m; sourceTree = "<group>"; };
+		863C9BCA19F2E10D009B4B5F /* HMFriendViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMFriendViewCell.h; sourceTree = "<group>"; };
+		863C9BCB19F2E10D009B4B5F /* HMFriendViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMFriendViewCell.m; sourceTree = "<group>"; };
+		863C9BCC19F2E10D009B4B5F /* HMFriendViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HMFriendViewCell.xib; sourceTree = "<group>"; };
+		863C9BD119F2E3D4009B4B5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		863C9BD319F2E3D4009B4B5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		86C712D719F1AD9D00B48369 /* HelloMaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloMaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86C712DB19F1AD9D00B48369 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86C712DC19F1AD9D00B48369 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -52,33 +83,9 @@
 		86C712F319F1AD9D00B48369 /* HelloMapsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelloMapsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		86C712F819F1AD9D00B48369 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86C712F919F1AD9D00B48369 /* HelloMapsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloMapsTests.m; sourceTree = "<group>"; };
-		86C7130619F2214800B48369 /* HMConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMConsts.h; sourceTree = "<group>"; };
 		86C7130719F221DC00B48369 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		86C7131019F246A200B48369 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		86C7131219F246A200B48369 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		86C7131519F24B0300B48369 /* HMFriendsListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMFriendsListController.h; sourceTree = "<group>"; };
 		86C7131619F24B0300B48369 /* HMFriendsListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMFriendsListController.m; sourceTree = "<group>"; };
-		86C7131E19F28F4300B48369 /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3.c; sourceTree = "<group>"; };
-		86C7131F19F28F4300B48369 /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3.h; sourceTree = "<group>"; };
-		86C7132019F28F4300B48369 /* sqlite3_unicode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3_unicode.c; sourceTree = "<group>"; };
-		86C7132119F28F4300B48369 /* sqlite3_unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3_unicode.h; sourceTree = "<group>"; };
-		86C7132219F28F4300B48369 /* SQLite3Cursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLite3Cursor.h; sourceTree = "<group>"; };
-		86C7132319F28F4300B48369 /* SQLite3Cursor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLite3Cursor.m; sourceTree = "<group>"; };
-		86C7132419F28F4300B48369 /* SQLite3CursorWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLite3CursorWindow.h; sourceTree = "<group>"; };
-		86C7132519F28F4300B48369 /* SQLite3CursorWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLite3CursorWindow.m; sourceTree = "<group>"; };
-		86C7132619F28F4300B48369 /* SQLite3Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLite3Database.h; sourceTree = "<group>"; };
-		86C7132719F28F4300B48369 /* SQLite3Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLite3Database.m; sourceTree = "<group>"; };
-		86C7132819F28F4300B48369 /* sqlite3ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3ext.h; sourceTree = "<group>"; };
-		86C7132919F28F4300B48369 /* SQLite3Query.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLite3Query.h; sourceTree = "<group>"; };
-		86C7132A19F28F4300B48369 /* SQLite3Query.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLite3Query.m; sourceTree = "<group>"; };
-		86C7133219F291AA00B48369 /* HMDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMDataBase.h; sourceTree = "<group>"; };
-		86C7133319F291AA00B48369 /* HMDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMDataBase.m; sourceTree = "<group>"; };
-		86C7133719F293DB00B48369 /* hellomaps.db.1.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hellomaps.db.1.sql; sourceTree = "<group>"; };
-		86C7133E19F29BFB00B48369 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		86C7134719F29F4200B48369 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		86C7134B19F2B03900B48369 /* HMFriendViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMFriendViewCell.h; sourceTree = "<group>"; };
-		86C7134C19F2B03A00B48369 /* HMFriendViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMFriendViewCell.m; sourceTree = "<group>"; };
-		86C7134E19F2CD2200B48369 /* HMFriendViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HMFriendViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +93,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64E578C67BD74057B4214ECB /* libPods.a in Frameworks */,
+				18B4537219F263840031B840 /* CoreLocation.framework in Frameworks */,
+				18B4537019F25CE90031B840 /* MapKit.framework in Frameworks */,
+				47203948B0DB43F397D2669B /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,14 +109,78 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18B4536A19F257910031B840 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				18B4536B19F257910031B840 /* HMConsts.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		7A25BB64F7354BEB92261167 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				86C7134719F29F4200B48369 /* UIKit.framework */,
-				86C7133E19F29BFB00B48369 /* Foundation.framework */,
+				18B4537119F263840031B840 /* CoreLocation.framework */,
+				18B4536F19F25CE90031B840 /* MapKit.framework */,
 				53E0DC3C33054917A369E7D3 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		863C9BAC19F2E0DC009B4B5F /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				863C9BAD19F2E0DC009B4B5F /* SQLite */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		863C9BAD19F2E0DC009B4B5F /* SQLite */ = {
+			isa = PBXGroup;
+			children = (
+				863C9BAF19F2E0DC009B4B5F /* sqlite3.c */,
+				863C9BB019F2E0DC009B4B5F /* sqlite3.h */,
+				863C9BB119F2E0DC009B4B5F /* sqlite3_unicode.c */,
+				863C9BB219F2E0DC009B4B5F /* sqlite3_unicode.h */,
+				863C9BB319F2E0DC009B4B5F /* SQLite3Cursor.h */,
+				863C9BB419F2E0DC009B4B5F /* SQLite3Cursor.m */,
+				863C9BB519F2E0DC009B4B5F /* SQLite3CursorWindow.h */,
+				863C9BB619F2E0DC009B4B5F /* SQLite3CursorWindow.m */,
+				863C9BB719F2E0DC009B4B5F /* SQLite3Database.h */,
+				863C9BB819F2E0DC009B4B5F /* SQLite3Database.m */,
+				863C9BB919F2E0DC009B4B5F /* sqlite3ext.h */,
+				863C9BBA19F2E0DC009B4B5F /* SQLite3Query.h */,
+				863C9BBB19F2E0DC009B4B5F /* SQLite3Query.m */,
+			);
+			path = SQLite;
+			sourceTree = "<group>";
+		};
+		863C9BBC19F2E0DC009B4B5F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				863C9BBD19F2E0DC009B4B5F /* db */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		863C9BBD19F2E0DC009B4B5F /* db */ = {
+			isa = PBXGroup;
+			children = (
+				863C9BBE19F2E0DC009B4B5F /* hellomaps.db.1.sql */,
+			);
+			path = db;
+			sourceTree = "<group>";
+		};
+		863C9BCF19F2E118009B4B5F /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				86C7131519F24B0300B48369 /* HMFriendsListController.h */,
+				86C7131619F24B0300B48369 /* HMFriendsListController.m */,
+				863C9BCA19F2E10D009B4B5F /* HMFriendViewCell.h */,
+				863C9BCB19F2E10D009B4B5F /* HMFriendViewCell.m */,
+				863C9BCC19F2E10D009B4B5F /* HMFriendViewCell.xib */,
+			);
+			name = Friends;
 			sourceTree = "<group>";
 		};
 		86C712CE19F1AD9D00B48369 = {
@@ -116,8 +189,9 @@
 				86C712D919F1AD9D00B48369 /* HelloMaps */,
 				86C712F619F1AD9D00B48369 /* HelloMapsTests */,
 				86C712D819F1AD9D00B48369 /* Products */,
-				19E2CA85B24B4CC382FB92C4 /* Pods.xcconfig */,
 				7A25BB64F7354BEB92261167 /* Frameworks */,
+				9208C84D00EC5E968A157631 /* Pods */,
+				6D0958D7DDA3444B9E726932 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -133,24 +207,22 @@
 		86C712D919F1AD9D00B48369 /* HelloMaps */ = {
 			isa = PBXGroup;
 			children = (
-				86C7133519F293DB00B48369 /* Resources */,
-				86C7131B19F28F4300B48369 /* Library */,
-				86C7130519F2214800B48369 /* Common */,
+				863C9BAC19F2E0DC009B4B5F /* Library */,
+				18B4536A19F257910031B840 /* Common */,
+				863C9BBC19F2E0DC009B4B5F /* Resources */,
 				1890BA2C19F24506008A880C /* HMAuthorizationController.h */,
 				1890BA2D19F24506008A880C /* HMAuthorizationController.m */,
-				86C7131519F24B0300B48369 /* HMFriendsListController.h */,
-				86C7131619F24B0300B48369 /* HMFriendsListController.m */,
+				863C9BCF19F2E118009B4B5F /* Friends */,
+				18B4536C19F25A6A0031B840 /* HMMapViewController.h */,
+				18B4536D19F25A6A0031B840 /* HMMapViewController.m */,
+				863C9BC719F2E0ED009B4B5F /* HMDataBase.h */,
+				863C9BC819F2E0ED009B4B5F /* HMDataBase.m */,
 				86C712DE19F1AD9D00B48369 /* AppDelegate.h */,
 				86C712DF19F1AD9D00B48369 /* AppDelegate.m */,
-				86C7130F19F246A200B48369 /* LaunchScreen.xib */,
-				86C7131119F246A200B48369 /* Main.storyboard */,
 				86C712EA19F1AD9D00B48369 /* Images.xcassets */,
+				863C9BD019F2E3D4009B4B5F /* LaunchScreen.xib */,
+				863C9BD219F2E3D4009B4B5F /* Main.storyboard */,
 				86C712DA19F1AD9D00B48369 /* Supporting Files */,
-				86C7133219F291AA00B48369 /* HMDataBase.h */,
-				86C7133319F291AA00B48369 /* HMDataBase.m */,
-				86C7134B19F2B03900B48369 /* HMFriendViewCell.h */,
-				86C7134C19F2B03A00B48369 /* HMFriendViewCell.m */,
-				86C7134E19F2CD2200B48369 /* HMFriendViewCell.xib */,
 			);
 			path = HelloMaps;
 			sourceTree = "<group>";
@@ -182,56 +254,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		86C7130519F2214800B48369 /* Common */ = {
+		9208C84D00EC5E968A157631 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				86C7130619F2214800B48369 /* HMConsts.h */,
+				440F494008A1FBC9BB6C6CFE /* Pods.debug.xcconfig */,
+				5189A3B2F05635C148999B14 /* Pods.release.xcconfig */,
 			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		86C7131B19F28F4300B48369 /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				86C7131C19F28F4300B48369 /* SQLite */,
-			);
-			path = Library;
-			sourceTree = "<group>";
-		};
-		86C7131C19F28F4300B48369 /* SQLite */ = {
-			isa = PBXGroup;
-			children = (
-				86C7131E19F28F4300B48369 /* sqlite3.c */,
-				86C7131F19F28F4300B48369 /* sqlite3.h */,
-				86C7132019F28F4300B48369 /* sqlite3_unicode.c */,
-				86C7132119F28F4300B48369 /* sqlite3_unicode.h */,
-				86C7132219F28F4300B48369 /* SQLite3Cursor.h */,
-				86C7132319F28F4300B48369 /* SQLite3Cursor.m */,
-				86C7132419F28F4300B48369 /* SQLite3CursorWindow.h */,
-				86C7132519F28F4300B48369 /* SQLite3CursorWindow.m */,
-				86C7132619F28F4300B48369 /* SQLite3Database.h */,
-				86C7132719F28F4300B48369 /* SQLite3Database.m */,
-				86C7132819F28F4300B48369 /* sqlite3ext.h */,
-				86C7132919F28F4300B48369 /* SQLite3Query.h */,
-				86C7132A19F28F4300B48369 /* SQLite3Query.m */,
-			);
-			path = SQLite;
-			sourceTree = "<group>";
-		};
-		86C7133519F293DB00B48369 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				86C7133619F293DB00B48369 /* db */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		86C7133619F293DB00B48369 /* db */ = {
-			isa = PBXGroup;
-			children = (
-				86C7133719F293DB00B48369 /* hellomaps.db.1.sql */,
-			);
-			path = db;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,10 +346,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86C7134F19F2CD2200B48369 /* HMFriendViewCell.xib in Resources */,
-				86C7134919F2A08E00B48369 /* LaunchScreen.xib in Resources */,
-				86C7134A19F2A08E00B48369 /* Main.storyboard in Resources */,
-				86C7133919F293DB00B48369 /* hellomaps.db.1.sql in Resources */,
+				863C9BD419F2E3D4009B4B5F /* LaunchScreen.xib in Resources */,
+				863C9BD519F2E3D4009B4B5F /* Main.storyboard in Resources */,
+				863C9BCE19F2E10D009B4B5F /* HMFriendViewCell.xib in Resources */,
+				863C9BC619F2E0DC009B4B5F /* hellomaps.db.1.sql in Resources */,
 				86C712EB19F1AD9D00B48369 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -372,18 +401,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86C7132D19F28F4300B48369 /* sqlite3_unicode.c in Sources */,
+				863C9BC119F2E0DC009B4B5F /* sqlite3_unicode.c in Sources */,
 				1890BA2E19F24506008A880C /* HMAuthorizationController.m in Sources */,
 				86C712E019F1AD9D00B48369 /* AppDelegate.m in Sources */,
-				86C7132E19F28F4300B48369 /* SQLite3Cursor.m in Sources */,
+				863C9BC219F2E0DC009B4B5F /* SQLite3Cursor.m in Sources */,
 				86C712DD19F1AD9D00B48369 /* main.m in Sources */,
-				86C7134D19F2B03A00B48369 /* HMFriendViewCell.m in Sources */,
-				86C7133119F28F4300B48369 /* SQLite3Query.m in Sources */,
+				18B4536E19F25A6A0031B840 /* HMMapViewController.m in Sources */,
+				863C9BC519F2E0DC009B4B5F /* SQLite3Query.m in Sources */,
 				86C7131719F24B0300B48369 /* HMFriendsListController.m in Sources */,
-				86C7132F19F28F4300B48369 /* SQLite3CursorWindow.m in Sources */,
-				86C7133019F28F4300B48369 /* SQLite3Database.m in Sources */,
-				86C7132C19F28F4300B48369 /* sqlite3.c in Sources */,
-				86C7133419F291AA00B48369 /* HMDataBase.m in Sources */,
+				863C9BC319F2E0DC009B4B5F /* SQLite3CursorWindow.m in Sources */,
+				863C9BC419F2E0DC009B4B5F /* SQLite3Database.m in Sources */,
+				863C9BC019F2E0DC009B4B5F /* sqlite3.c in Sources */,
+				863C9BC919F2E0ED009B4B5F /* HMDataBase.m in Sources */,
+				863C9BCD19F2E10D009B4B5F /* HMFriendViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,18 +436,18 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		86C7130F19F246A200B48369 /* LaunchScreen.xib */ = {
+		863C9BD019F2E3D4009B4B5F /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				86C7131019F246A200B48369 /* Base */,
+				863C9BD119F2E3D4009B4B5F /* Base */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
-		86C7131119F246A200B48369 /* Main.storyboard */ = {
+		863C9BD219F2E3D4009B4B5F /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				86C7131219F246A200B48369 /* Base */,
+				863C9BD319F2E3D4009B4B5F /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -503,7 +533,7 @@
 		};
 		86C712FE19F1AD9D00B48369 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 19E2CA85B24B4CC382FB92C4 /* Pods.xcconfig */;
+			baseConfigurationReference = 6D0958D7DDA3444B9E726932 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -518,7 +548,7 @@
 		};
 		86C712FF19F1AD9D00B48369 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 19E2CA85B24B4CC382FB92C4 /* Pods.xcconfig */;
+			baseConfigurationReference = 6D0958D7DDA3444B9E726932 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
