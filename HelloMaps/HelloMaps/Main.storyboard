@@ -23,55 +23,78 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="sQy-2H-TQq">
-                                        <rect key="frame" x="0.0" y="73" width="320" height="165"/>
+                                        <rect key="frame" x="0.0" y="201" width="320" height="165"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIY-Av-EGV" userLabel="loginVkBtn">
-                                        <rect key="frame" x="43" y="313" width="235" height="46"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K9m-Hb-VOx">
+                                        <rect key="frame" x="0.0" y="258" width="320" height="310"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hD5-mp-5rS" userLabel="regBtn">
+                                                <rect key="frame" x="42" y="132" width="235" height="46"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="46" id="RpO-pl-TXH"/>
+                                                    <constraint firstAttribute="width" constant="235" id="X2e-KB-GS5"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="register_btn">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIY-Av-EGV" userLabel="loginVkBtn">
+                                                <rect key="frame" x="43" y="55" width="235" height="46"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="46" id="4XC-Vm-1gu"/>
+                                                    <constraint firstAttribute="width" constant="235" id="rZd-8d-O8t"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="vk_enter_btn">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6X-m0-Qdt" userLabel="loginBtn">
+                                                <rect key="frame" x="42" y="185" width="235" height="46"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="46" id="8Ox-2x-NBU"/>
+                                                    <constraint firstAttribute="width" constant="235" id="YzG-2b-3M8"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="enter_btn">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="235" id="P8i-u1-kYS"/>
-                                            <constraint firstAttribute="height" constant="46" id="WvW-ze-WLf"/>
+                                            <constraint firstItem="c6X-m0-Qdt" firstAttribute="top" secondItem="hD5-mp-5rS" secondAttribute="bottom" constant="7" id="5Ec-eG-8h8"/>
+                                            <constraint firstAttribute="centerX" secondItem="hIY-Av-EGV" secondAttribute="centerX" id="BUP-C7-0NR"/>
+                                            <constraint firstItem="hD5-mp-5rS" firstAttribute="top" secondItem="hIY-Av-EGV" secondAttribute="bottom" constant="31" id="Lpn-vt-n9g"/>
+                                            <constraint firstAttribute="centerY" secondItem="hD5-mp-5rS" secondAttribute="centerY" priority="750" id="WRS-KF-Sw2"/>
+                                            <constraint firstAttribute="centerX" secondItem="hD5-mp-5rS" secondAttribute="centerX" id="eTQ-Rq-Cok"/>
+                                            <constraint firstAttribute="centerX" secondItem="c6X-m0-Qdt" secondAttribute="centerX" id="gWz-ZT-yMk"/>
+                                            <constraint firstAttribute="centerY" secondItem="c6X-m0-Qdt" secondAttribute="centerY" priority="750" id="kYx-Br-XVE"/>
+                                            <constraint firstItem="c6X-m0-Qdt" firstAttribute="top" secondItem="hD5-mp-5rS" secondAttribute="bottom" constant="7" id="ldL-4Y-Vr2"/>
+                                            <constraint firstAttribute="centerY" secondItem="hIY-Av-EGV" secondAttribute="centerY" priority="750" id="qSz-Zt-Bf7"/>
                                         </constraints>
-                                        <state key="normal" backgroundImage="vk_enter_btn">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6X-m0-Qdt" userLabel="loginBtn">
-                                        <rect key="frame" x="43" y="386" width="235" height="46"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="235" id="ltB-ul-FAd"/>
-                                            <constraint firstAttribute="height" constant="46" id="qhJ-wm-eSU"/>
-                                        </constraints>
-                                        <state key="normal" backgroundImage="enter_btn">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hD5-mp-5rS" userLabel="regBtn">
-                                        <rect key="frame" x="43" y="439" width="235" height="46"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="46" id="Lny-uc-dA2"/>
-                                            <constraint firstAttribute="width" constant="235" id="tIR-UD-Zph"/>
-                                        </constraints>
-                                        <state key="normal" backgroundImage="register_btn">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="centerX" secondItem="hD5-mp-5rS" secondAttribute="centerX" id="2Je-Th-bt9"/>
-                                    <constraint firstItem="hIY-Av-EGV" firstAttribute="top" secondItem="sQy-2H-TQq" secondAttribute="bottom" constant="75" id="3J8-yx-9AM"/>
+                                    <constraint firstItem="sQy-2H-TQq" firstAttribute="leading" secondItem="K9m-Hb-VOx" secondAttribute="leading" id="1pE-Mc-oO5"/>
+                                    <constraint firstItem="sQy-2H-TQq" firstAttribute="top" secondItem="Zqs-W6-mWT" secondAttribute="top" priority="750" constant="201" id="58g-U2-Z9B"/>
                                     <constraint firstAttribute="trailing" secondItem="wgh-L8-9FP" secondAttribute="trailing" id="5XD-aa-b2b"/>
                                     <constraint firstItem="sQy-2H-TQq" firstAttribute="leading" secondItem="Zqs-W6-mWT" secondAttribute="leading" id="5dg-ca-sHP"/>
-                                    <constraint firstAttribute="centerX" secondItem="c6X-m0-Qdt" secondAttribute="centerX" id="RQH-D7-NN5"/>
-                                    <constraint firstItem="c6X-m0-Qdt" firstAttribute="top" secondItem="hIY-Av-EGV" secondAttribute="bottom" constant="27" id="Uzg-lC-Fx6"/>
-                                    <constraint firstItem="hD5-mp-5rS" firstAttribute="top" secondItem="c6X-m0-Qdt" secondAttribute="bottom" constant="7" id="X89-h8-ayy"/>
-                                    <constraint firstItem="sQy-2H-TQq" firstAttribute="top" secondItem="Zqs-W6-mWT" secondAttribute="top" constant="73" id="Zao-jE-0Ow"/>
-                                    <constraint firstAttribute="centerX" secondItem="hIY-Av-EGV" secondAttribute="centerX" id="aVv-1P-vmM"/>
+                                    <constraint firstItem="K9m-Hb-VOx" firstAttribute="top" secondItem="Zqs-W6-mWT" secondAttribute="top" constant="258" id="NYR-f0-Yh6"/>
+                                    <constraint firstAttribute="bottom" secondItem="K9m-Hb-VOx" secondAttribute="bottom" id="XkD-eS-psQ"/>
+                                    <constraint firstItem="K9m-Hb-VOx" firstAttribute="leading" secondItem="Zqs-W6-mWT" secondAttribute="leading" id="XoW-aB-LGA"/>
+                                    <constraint firstItem="sQy-2H-TQq" firstAttribute="trailing" secondItem="K9m-Hb-VOx" secondAttribute="trailing" id="cvh-jn-LDl"/>
                                     <constraint firstAttribute="trailing" secondItem="sQy-2H-TQq" secondAttribute="trailing" id="f5R-AM-cPa"/>
                                     <constraint firstAttribute="bottom" secondItem="wgh-L8-9FP" secondAttribute="bottom" id="kaB-gA-4zT"/>
                                     <constraint firstItem="wgh-L8-9FP" firstAttribute="top" secondItem="Zqs-W6-mWT" secondAttribute="top" id="kcD-kG-vnI"/>
                                     <constraint firstItem="wgh-L8-9FP" firstAttribute="leading" secondItem="Zqs-W6-mWT" secondAttribute="leading" id="p0Z-pT-s09"/>
+                                    <constraint firstAttribute="trailing" secondItem="K9m-Hb-VOx" secondAttribute="trailing" id="wLX-yL-r2h"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="5dg-ca-sHP"/>
+                                        <exclude reference="f5R-AM-cPa"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -85,6 +108,8 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="hiddenView" destination="K9m-Hb-VOx" id="ThH-V5-a7n"/>
+                        <outlet property="logoView" destination="sQy-2H-TQq" id="vHq-p7-6g2"/>
                         <segue destination="Gkg-j3-Gpo" kind="show" id="BMp-sI-TQj"/>
                     </connections>
                 </viewController>
