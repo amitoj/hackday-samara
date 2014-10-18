@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "VKSdk.h"
 
-@interface HMAuthorizationController : UIViewController <VKSdkDelegate>
+@interface HMAuthorizationController : UIViewController
 
 
 @end

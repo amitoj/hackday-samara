@@ -8,6 +8,8 @@
 
 #import "HMAuthorizationController.h"
 #import "HMMapViewController.h"
+#import "AFHTTPSessionManager.h"
+#import "VKSdk.h"
 
 @interface HMAuthorizationController ()
 @property (weak, nonatomic) IBOutlet UIView *hiddenView;
@@ -22,7 +24,6 @@
     [super viewDidLoad];
     self.hiddenView.alpha = 0.0;
 }
-
 
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -48,53 +49,8 @@
 
 - (IBAction)vkLoginBtClick:(id)sender
 {
-    [VKSdk initializeWithDelegate:self andAppId:VK_APP_ID];
     [VKSdk authorize:@[VK_PER_FRIENDS, VK_PER_MESSAGES]];
 }
 
-#pragma mark - Private methods
-
-- (void)showMainScreen
-{
-    UIViewController * rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
-    if([rootViewController isKindOfClass:[UINavigationController class]])
-    {
-        UINavigationController * navController = (UINavigationController*)rootViewController;
-        if(![navController.topViewController isKindOfClass:[HMMapViewController class]])
-        {
-            HMMapViewController * mapController = [navController.storyboard instantiateViewControllerWithIdentifier:@"HMMapViewController"];
-            [navController setViewControllers:@[mapController] animated:YES];
-        }
-    }
-}
-
-#pragma mark - VKSdkDelegate methods
-
-- (void)vkSdkNeedCaptchaEnter:(VKError *)captchaError;
-{
-    VKCaptchaViewController * vc = [VKCaptchaViewController captchaControllerWithError:captchaError];
-    [vc presentIn:self];
-}
-
-- (void)vkSdkTokenHasExpired:(VKAccessToken *)expiredToken;
-{
-    NSLog(@"%@", NSStringFromSelector(_cmd));
-}
-
-- (void)vkSdkUserDeniedAccess:(VKError *)authorizationError;
-{
-    NSLog(@"%@", NSStringFromSelector(_cmd));
-}
-
-- (void)vkSdkShouldPresentViewController:(UIViewController *)controller;
-{
-    NSLog(@"%@", NSStringFromSelector(_cmd));
-}
-
-- (void)vkSdkReceivedNewToken:(VKAccessToken *)newToken;
-{
-    NSLog(@"%@", NSStringFromSelector(_cmd));
-    [self showMainScreen];
-}
 
 @end

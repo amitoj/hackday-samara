@@ -10,17 +10,21 @@
 #import "VKSdk.h"
 #import "HMAuthorizationController.h"
 #import "HMMapViewController.h"
+#import "AFHTTPSessionManager.h"
 
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
-
+{
+    AFHTTPSessionManager * _sessionManager;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    if ([VKSdk isLoggedIn])
+    [VKSdk initializeWithDelegate:self andAppId:VK_APP_ID];
+    if ([VKSdk wakeUpSession] && [VKSdk isLoggedIn])
     {
         UIViewController * rootViewController = [[self window] rootViewController];
         if([rootViewController isKindOfClass:[UINavigationController class]])
@@ -29,10 +33,11 @@
             if(![navController.topViewController isKindOfClass:[HMMapViewController class]])
             {
                 HMMapViewController * mapController = [navController.storyboard instantiateViewControllerWithIdentifier:@"HMMapViewController"];
-                [navController setViewControllers:@[mapController] animated:YES];
+                [navController setViewControllers:@[mapController] animated:NO];
             }
         }
     }
+    _sessionManager = [[AFHTTPSessionManager alloc] init];
     return YES;
 }
 
@@ -68,6 +73,57 @@
 - (NSURL *)applicationDocumentsDirectory {
     // The directory the application uses to store the Core Data store file. This code uses a directory named "hackday.HelloMaps" in the application's documents directory.
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+#pragma mark - VKSdkDelegate methods
+
+- (void)vkSdkNeedCaptchaEnter:(VKError *)captchaError;
+{
+    UIViewController * rootViewController = [[self window] rootViewController];
+    if([rootViewController isKindOfClass:[UINavigationController class]])
+    {
+        UINavigationController * navController = (UINavigationController*)rootViewController;
+        VKCaptchaViewController * vc = [VKCaptchaViewController captchaControllerWithError:captchaError];
+        [vc presentIn:navController.topViewController];
+    }
+}
+
+- (void)vkSdkTokenHasExpired:(VKAccessToken *)expiredToken;
+{
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+}
+
+- (void)vkSdkUserDeniedAccess:(VKError *)authorizationError;
+{
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+}
+
+- (void)vkSdkShouldPresentViewController:(UIViewController *)controller;
+{
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+}
+
+- (void)vkSdkReceivedNewToken:(VKAccessToken *)newToken;
+{
+    UIViewController * rootViewController = [[self window] rootViewController];
+    if([rootViewController isKindOfClass:[UINavigationController class]])
+    {
+        UINavigationController * navController = (UINavigationController*)rootViewController;
+        if(![navController.topViewController isKindOfClass:[HMMapViewController class]])
+        {
+            HMMapViewController * mapController = [navController.storyboard instantiateViewControllerWithIdentifier:@"HMMapViewController"];
+            [navController setViewControllers:@[mapController] animated:YES];
+        }
+    }
+    
+    //отправка данных после входа в систему
+    NSURLSessionDataTask * task = [_sessionManager POST:@""
+                                             parameters:nil
+                                                success:^(NSURLSessionDataTask *task, id responseObject) {
+                                                    
+                                                } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                                    
+                                                }];
 }
 
 @end

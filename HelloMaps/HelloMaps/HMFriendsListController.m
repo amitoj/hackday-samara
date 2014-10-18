@@ -100,6 +100,7 @@
                                                                            friend[@"last_name"] ?: [NSNull null],
                                                                            friend[@"photo"] ?: [NSNull null]]];
                     }
+                // запрос состояний друзей
                     [self updateCursors];
                     [self.tableView reloadData];
                 } errorBlock:^(NSError *error) {
