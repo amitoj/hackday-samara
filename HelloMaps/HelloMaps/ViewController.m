@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [VKSdk initializeWithDelegate:self andAppId:VK_APP_ID];
+    //////
 }
 
 #pragma mark - VKSdkDelegate methods
