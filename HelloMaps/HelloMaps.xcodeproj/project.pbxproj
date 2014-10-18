@@ -34,6 +34,7 @@
 		1890BA2D19F24506008A880C /* HMAuthorizationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMAuthorizationController.m; sourceTree = "<group>"; };
 		18B4536619F255660031B840 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		18B4536719F255660031B840 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		18B4536B19F257910031B840 /* HMConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMConsts.h; sourceTree = "<group>"; };
 		440F494008A1FBC9BB6C6CFE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		5189A3B2F05635C148999B14 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		53E0DC3C33054917A369E7D3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +74,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18B4536A19F257910031B840 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				18B4536B19F257910031B840 /* HMConsts.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		7A25BB64F7354BEB92261167 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +125,7 @@
 				86C7131119F246A200B48369 /* Main.storyboard */,
 				86C712EA19F1AD9D00B48369 /* Images.xcassets */,
 				86C712E119F1AD9D00B48369 /* HelloMaps.xcdatamodeld */,
+				18B4536A19F257910031B840 /* Common */,
 				86C712DA19F1AD9D00B48369 /* Supporting Files */,
 			);
 			path = HelloMaps;

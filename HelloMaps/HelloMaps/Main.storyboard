@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cqK-qn-fE8">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
@@ -105,36 +105,36 @@
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Zqs-W6-mWT" secondAttribute="bottom" id="opL-cZ-Fam"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" id="3q6-lz-bOE"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="hiddenView" destination="K9m-Hb-VOx" id="ThH-V5-a7n"/>
                         <outlet property="logoView" destination="sQy-2H-TQq" id="vHq-p7-6g2"/>
-                        <segue destination="Gkg-j3-Gpo" kind="show" id="BMp-sI-TQj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="244" y="319"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="Q9g-Ml-R2s">
+        <!--Navigation Controller-->
+        <scene sceneID="Yfd-aH-2G6">
             <objects>
-                <viewController id="Gkg-j3-Gpo" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="o67-qW-euo"/>
-                        <viewControllerLayoutGuide type="bottom" id="ial-2o-FwP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="wyH-Ql-Dud">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
+                <navigationController navigationBarHidden="YES" id="cqK-qn-fE8" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HE2-53-GOP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="60J-YF-kDw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="Sor-DW-808"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QxP-7Z-1YR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="765" y="319"/>
+            <point key="canvasLocation" x="-188" y="319"/>
         </scene>
     </scenes>
     <resources>
