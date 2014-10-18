@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "VKAuthorizeController.h"
 
 @interface ViewController ()
 
@@ -16,19 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [VKSdk initializeWithDelegate:self andAppId:VK_APP_ID];
-    if ([VKSdk wakeUpSession])
-    {
-        [VKSdk authorize:@[VK_PER_FRIENDS, VK_PER_MESSAGES]];
-    }
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 #pragma mark - VKSdkDelegate methods
 - (void)vkSdkNeedCaptchaEnter:(VKError *)captchaError;
