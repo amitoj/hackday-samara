@@ -51,7 +51,8 @@
 
 - (void)vkSdkNeedCaptchaEnter:(VKError *)captchaError;
 {
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+    VKCaptchaViewController * vc = [VKCaptchaViewController captchaControllerWithError:captchaError];
+    [vc presentIn:self];
 }
 
 - (void)vkSdkTokenHasExpired:(VKAccessToken *)expiredToken;
