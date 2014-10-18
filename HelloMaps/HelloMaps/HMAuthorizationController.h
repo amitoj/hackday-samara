@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "VKSdk.h"
 
-@interface ViewController : UIViewController <VKSdkDelegate>
+@interface HMAuthorizationController : UIViewController <VKSdkDelegate>
 
 
 @end

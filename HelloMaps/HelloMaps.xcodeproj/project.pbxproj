@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1890BA2E19F24506008A880C /* HMAuthorizationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1890BA2D19F24506008A880C /* HMAuthorizationController.m */; };
+		1890BA3119F24521008A880C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1890BA2F19F24521008A880C /* LaunchScreen.xib */; };
+		1890BA3219F24521008A880C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1890BA3019F24521008A880C /* Main.storyboard */; };
 		64E578C67BD74057B4214ECB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53E0DC3C33054917A369E7D3 /* libPods.a */; };
 		86C712DD19F1AD9D00B48369 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C712DC19F1AD9D00B48369 /* main.m */; };
 		86C712E019F1AD9D00B48369 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C712DF19F1AD9D00B48369 /* AppDelegate.m */; };
 		86C712E319F1AD9D00B48369 /* HelloMaps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86C712E119F1AD9D00B48369 /* HelloMaps.xcdatamodeld */; };
-		86C712E619F1AD9D00B48369 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C712E519F1AD9D00B48369 /* ViewController.m */; };
-		86C712E919F1AD9D00B48369 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C712E719F1AD9D00B48369 /* Main.storyboard */; };
 		86C712EB19F1AD9D00B48369 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86C712EA19F1AD9D00B48369 /* Images.xcassets */; };
-		86C712EE19F1AD9D00B48369 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C712EC19F1AD9D00B48369 /* LaunchScreen.xib */; };
 		86C712FA19F1AD9D00B48369 /* HelloMapsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C712F919F1AD9D00B48369 /* HelloMapsTests.m */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +29,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1890BA2C19F24506008A880C /* HMAuthorizationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMAuthorizationController.h; sourceTree = "<group>"; };
+		1890BA2D19F24506008A880C /* HMAuthorizationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMAuthorizationController.m; sourceTree = "<group>"; };
+		1890BA2F19F24521008A880C /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		1890BA3019F24521008A880C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		19E2CA85B24B4CC382FB92C4 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		53E0DC3C33054917A369E7D3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		86C712D719F1AD9D00B48369 /* HelloMaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloMaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,11 +41,7 @@
 		86C712DE19F1AD9D00B48369 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		86C712DF19F1AD9D00B48369 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		86C712E219F1AD9D00B48369 /* HelloMaps.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HelloMaps.xcdatamodel; sourceTree = "<group>"; };
-		86C712E419F1AD9D00B48369 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		86C712E519F1AD9D00B48369 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		86C712E819F1AD9D00B48369 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		86C712EA19F1AD9D00B48369 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		86C712ED19F1AD9D00B48369 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		86C712F319F1AD9D00B48369 /* HelloMapsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelloMapsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		86C712F819F1AD9D00B48369 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86C712F919F1AD9D00B48369 /* HelloMapsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloMapsTests.m; sourceTree = "<group>"; };
@@ -99,14 +99,14 @@
 		86C712D919F1AD9D00B48369 /* HelloMaps */ = {
 			isa = PBXGroup;
 			children = (
+				1890BA2F19F24521008A880C /* LaunchScreen.xib */,
+				1890BA3019F24521008A880C /* Main.storyboard */,
+				1890BA2C19F24506008A880C /* HMAuthorizationController.h */,
+				1890BA2D19F24506008A880C /* HMAuthorizationController.m */,
 				86C7130519F2214800B48369 /* Common */,
 				86C712DE19F1AD9D00B48369 /* AppDelegate.h */,
 				86C712DF19F1AD9D00B48369 /* AppDelegate.m */,
-				86C712E419F1AD9D00B48369 /* ViewController.h */,
-				86C712E519F1AD9D00B48369 /* ViewController.m */,
-				86C712E719F1AD9D00B48369 /* Main.storyboard */,
 				86C712EA19F1AD9D00B48369 /* Images.xcassets */,
-				86C712EC19F1AD9D00B48369 /* LaunchScreen.xib */,
 				86C712E119F1AD9D00B48369 /* HelloMaps.xcdatamodeld */,
 				86C712DA19F1AD9D00B48369 /* Supporting Files */,
 			);
@@ -231,8 +231,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86C712E919F1AD9D00B48369 /* Main.storyboard in Resources */,
-				86C712EE19F1AD9D00B48369 /* LaunchScreen.xib in Resources */,
+				1890BA3219F24521008A880C /* Main.storyboard in Resources */,
+				1890BA3119F24521008A880C /* LaunchScreen.xib in Resources */,
 				86C712EB19F1AD9D00B48369 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,9 +284,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1890BA2E19F24506008A880C /* HMAuthorizationController.m in Sources */,
 				86C712E019F1AD9D00B48369 /* AppDelegate.m in Sources */,
 				86C712E319F1AD9D00B48369 /* HelloMaps.xcdatamodeld in Sources */,
-				86C712E619F1AD9D00B48369 /* ViewController.m in Sources */,
 				86C712DD19F1AD9D00B48369 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,25 +308,6 @@
 			targetProxy = 86C712F419F1AD9D00B48369 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		86C712E719F1AD9D00B48369 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				86C712E819F1AD9D00B48369 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		86C712EC19F1AD9D00B48369 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				86C712ED19F1AD9D00B48369 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		86C712FB19F1AD9D00B48369 /* Debug */ = {
