@@ -10,6 +10,9 @@
 		1890BA2E19F24506008A880C /* HMAuthorizationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1890BA2D19F24506008A880C /* HMAuthorizationController.m */; };
 		18B4536819F255660031B840 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B4536619F255660031B840 /* LaunchScreen.xib */; };
 		18B4536919F255660031B840 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18B4536719F255660031B840 /* Main.storyboard */; };
+		18B4536E19F25A6A0031B840 /* HMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B4536D19F25A6A0031B840 /* HMMapViewController.m */; };
+		18B4537019F25CE90031B840 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B4536F19F25CE90031B840 /* MapKit.framework */; };
+		18B4537219F263840031B840 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B4537119F263840031B840 /* CoreLocation.framework */; };
 		64E578C67BD74057B4214ECB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53E0DC3C33054917A369E7D3 /* libPods.a */; };
 		86C712DD19F1AD9D00B48369 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C712DC19F1AD9D00B48369 /* main.m */; };
 		86C712E019F1AD9D00B48369 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C712DF19F1AD9D00B48369 /* AppDelegate.m */; };
@@ -35,6 +38,10 @@
 		18B4536619F255660031B840 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		18B4536719F255660031B840 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		18B4536B19F257910031B840 /* HMConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMConsts.h; sourceTree = "<group>"; };
+		18B4536C19F25A6A0031B840 /* HMMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMMapViewController.h; sourceTree = "<group>"; };
+		18B4536D19F25A6A0031B840 /* HMMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMMapViewController.m; sourceTree = "<group>"; };
+		18B4536F19F25CE90031B840 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		18B4537119F263840031B840 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		440F494008A1FBC9BB6C6CFE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		5189A3B2F05635C148999B14 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		53E0DC3C33054917A369E7D3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,8 +56,6 @@
 		86C712F819F1AD9D00B48369 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86C712F919F1AD9D00B48369 /* HelloMapsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloMapsTests.m; sourceTree = "<group>"; };
 		86C7130719F221DC00B48369 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		86C7131019F246A200B48369 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		86C7131219F246A200B48369 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		86C7131519F24B0300B48369 /* HMFriendsListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMFriendsListController.h; sourceTree = "<group>"; };
 		86C7131619F24B0300B48369 /* HMFriendsListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMFriendsListController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,6 +65,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18B4537219F263840031B840 /* CoreLocation.framework in Frameworks */,
+				18B4537019F25CE90031B840 /* MapKit.framework in Frameworks */,
 				64E578C67BD74057B4214ECB /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +92,8 @@
 		7A25BB64F7354BEB92261167 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18B4537119F263840031B840 /* CoreLocation.framework */,
+				18B4536F19F25CE90031B840 /* MapKit.framework */,
 				53E0DC3C33054917A369E7D3 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -119,10 +128,10 @@
 				1890BA2D19F24506008A880C /* HMAuthorizationController.m */,
 				86C7131519F24B0300B48369 /* HMFriendsListController.h */,
 				86C7131619F24B0300B48369 /* HMFriendsListController.m */,
+				18B4536C19F25A6A0031B840 /* HMMapViewController.h */,
+				18B4536D19F25A6A0031B840 /* HMMapViewController.m */,
 				86C712DE19F1AD9D00B48369 /* AppDelegate.h */,
 				86C712DF19F1AD9D00B48369 /* AppDelegate.m */,
-				86C7130F19F246A200B48369 /* LaunchScreen.xib */,
-				86C7131119F246A200B48369 /* Main.storyboard */,
 				86C712EA19F1AD9D00B48369 /* Images.xcassets */,
 				86C712E119F1AD9D00B48369 /* HelloMaps.xcdatamodeld */,
 				18B4536A19F257910031B840 /* Common */,
@@ -307,6 +316,7 @@
 				86C712E019F1AD9D00B48369 /* AppDelegate.m in Sources */,
 				86C712E319F1AD9D00B48369 /* HelloMaps.xcdatamodeld in Sources */,
 				86C712DD19F1AD9D00B48369 /* main.m in Sources */,
+				18B4536E19F25A6A0031B840 /* HMMapViewController.m in Sources */,
 				86C7131719F24B0300B48369 /* HMFriendsListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,25 +338,6 @@
 			targetProxy = 86C712F419F1AD9D00B48369 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		86C7130F19F246A200B48369 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				86C7131019F246A200B48369 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-		86C7131119F246A200B48369 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				86C7131219F246A200B48369 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		86C712FB19F1AD9D00B48369 /* Debug */ = {
