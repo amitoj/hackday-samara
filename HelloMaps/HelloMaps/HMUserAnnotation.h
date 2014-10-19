@@ -11,6 +11,6 @@
 
 @interface HMUserAnnotation : NSObject <MKAnnotation>
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-
+@property (nonatomic, strong) NSDictionary * userInfo;
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate;
 @end

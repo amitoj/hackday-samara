@@ -10,4 +10,14 @@
 
 @implementation HMUserAnnotation
 
+- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate
+{
+    self = [super init];
+    if(self)
+    {
+        _coordinate = coordinate;
+    }
+    return self;
+}
+
 @end

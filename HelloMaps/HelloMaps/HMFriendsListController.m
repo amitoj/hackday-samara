@@ -59,14 +59,16 @@
 
 - (void)updateCursors
 {
-    SQLite3Cursor * cursor = [[HMDataBase sharedInstance] rawQueryWithSQL:@"SELECT * FROM friends WHERE is_user = 1 ORDER BY first_name" args:nil windowSize:20];
+    [self.cursors removeAllObjects];
+    [self.sections removeAllObjects];
+    SQLite3Cursor * cursor = [[HMDataBase sharedInstance] rawQueryWithSQL:@"SELECT * FROM friends WHERE is_user = 1  AND last_name IS NOT NULL GROUP BY last_name ORDER BY first_name" args:nil windowSize:20];
     if(cursor.count > 0)
     {
         NSString * section = @"";
         [self.sections addObject:section];
         [self.cursors setObject:cursor forKey:section];
     }
-    cursor = [[HMDataBase sharedInstance] rawQueryWithSQL:@"SELECT * FROM friends WHERE is_user = 0 ORDER BY first_name" args:nil windowSize:20];
+    cursor = [[HMDataBase sharedInstance] rawQueryWithSQL:@"SELECT * FROM friends WHERE is_user = 0 AND last_name IS NOT NULL GROUP BY last_name ORDER BY first_name" args:nil windowSize:20];
     if(cursor.count > 0)
     {
         NSString * section = @"Друзья вне HelloMaps";
@@ -77,7 +79,6 @@
 
 - (void)loadFriendsListFromVKWithRefresh:(BOOL)isRefresh
 {
-    
     if([VKSdk isLoggedIn])
     {
         [self updateCursors];
@@ -91,7 +92,6 @@
                     if(isRefresh)
                     {
                         [self.refreshControl endRefreshing];
-                        [self clearList];
                     }
                     for (NSDictionary * friend in response.json)
                     {
@@ -102,13 +102,12 @@
                                                                            friend[@"photo"] ?: [NSNull null]]];
                     }
                 // запрос состояний друзей
-                    [[HMSessionManager sharedInstance] getFriendsRadiusWithCompletionBlock:^(NSURLSessionDataTask *task, id responceObject, NSError *error) {
-                        if([responceObject isKindOfClass:[NSArray class]])
+                    [[HMSessionManager sharedInstance] getFriendsRadiusWithCompletionBlock:^(NSURLSessionDataTask *task, id responceObject1, NSError *error) {
+                        if([responceObject1 isKindOfClass:[NSArray class]])
                         {
-                            NSArray * friendsInfo = responceObject;
-                            for (NSDictionary * friendInfo in friendsInfo) {
-                                [[HMDataBase sharedInstance] executeQueryWithSQL:@"UPDATE friends SET radius = ? WHERE _id = ?"
-                                                                            args:@[friendInfo[@"radius"],
+                            for (NSDictionary * friendInfo in responceObject1) {
+                                [[HMDataBase sharedInstance] executeQueryWithSQL:@"UPDATE friends SET radius = ?, is_user = 1 WHERE _id = ?"
+                                                                            args:@[@([friendInfo[@"radius"] intValue]),
                                                                                    friendInfo[@"id"]]];
                             }
                         }
@@ -127,10 +126,9 @@
             [[HMSessionManager sharedInstance] getFriendsRadiusWithCompletionBlock:^(NSURLSessionDataTask *task, id responceObject, NSError *error) {
                 if([responceObject isKindOfClass:[NSArray class]])
                 {
-                    NSArray * friendsInfo = responceObject;
-                    for (NSDictionary * friendInfo in friendsInfo) {
-                        [[HMDataBase sharedInstance] executeQueryWithSQL:@"UPDATE friends SET radius = ? WHERE _id = ?"
-                                                                    args:@[friendInfo[@"radius"],
+                    for (NSDictionary * friendInfo in responceObject) {
+                        [[HMDataBase sharedInstance] executeQueryWithSQL:@"UPDATE friends SET radius = ?, is_user = 1  WHERE _id = ?"
+                                                                    args:@[@([friendInfo[@"radius"] intValue]),
                                                                            friendInfo[@"id"]]];
                     }
                 }

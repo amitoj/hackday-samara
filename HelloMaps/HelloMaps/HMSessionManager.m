@@ -128,6 +128,15 @@
                parameters:params
                   success:^(NSURLSessionDataTask *task, id responseObject) {
                       NSLog(@"/friend RESPONCE %@", responseObject);
+                      if([responseObject isKindOfClass:[NSArray class]])
+                      {
+                          for (NSDictionary * item in responseObject) {
+                              [[HMDataBase sharedInstance] executeQueryWithSQL:@"UPDATE friends SET latitude = ?, longitude = ? WHERE _id = ?"
+                                                                          args:@[item[@"point"][@"latitude"]?:[NSNull null],
+                                                                                 item[@"point"][@"longitude"]?:[NSNull null],
+                                                                                 item[@"id"]]];
+                          }
+                      }
                       completionBlock(task, responseObject, nil);
                   } failure:^(NSURLSessionDataTask *task, NSError *error) {
                       NSLog(@"/friend ERROR %@", error);

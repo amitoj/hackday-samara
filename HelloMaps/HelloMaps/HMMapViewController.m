@@ -11,6 +11,9 @@
 #import "HMLocationTracker.h"
 #import "HMSessionManager.h"
 #import "HMUserAnnotation.h"
+#import "UIImageView+AFNetworking.h"
+#import "UIButton+AFNetworking.h"
+#import "HMDataBase.h"
 
 @interface HMMapViewController ()
 {
@@ -26,6 +29,8 @@
 @property (weak, nonatomic) IBOutlet UIView *blueView;
 @property (weak, nonatomic) IBOutlet UILabel *notificationsCountLabel;
 @property (nonatomic) CGFloat radius;
+@property (weak, nonatomic) IBOutlet UIView *avatarView;
+@property (nonatomic, strong) NSMutableArray * anotations;
 
 @property (nonatomic, strong) HMLocationTracker *locationTracker;
 @end
@@ -43,6 +48,7 @@
             [values addObject:@(i)];
         }
         _radiusAvailableValues = values;
+        self.anotations = [NSMutableArray array];
     }
     return self;
 }
@@ -84,7 +90,7 @@
     self.locationTracker = [[HMLocationTracker alloc] init];
     [self.locationTracker setLocationUpdatedInForeground:^ (CLLocation *location) {
         [[HMSessionManager sharedInstance] setUserDataWithCompletionBlock:^(NSURLSessionDataTask *task, NSError *error) {
-            }];
+        }];
     }];
     [self.locationTracker setLocationUpdatedInBackground:^ (CLLocation *location) {
         [[HMSessionManager sharedInstance] setUserDataWithCompletionBlock:^(NSURLSessionDataTask *task, NSError *error) {
@@ -100,6 +106,26 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    self.avatarView.layer.cornerRadius = self.avatarView.frame.size.height / 2;
+    NSDictionary * userInfo = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
+    if (userInfo[@"photo"])
+    {
+        NSURL* avatarUrl = [NSURL URLWithString:userInfo[@"photo"]];
+        NSURLRequest* avatarRequest = [NSURLRequest requestWithURL:avatarUrl];
+        [((UIButton*)self.avatarView.subviews[0]) setImageForState:UIControlStateNormal withURLRequest:avatarRequest placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+            UIButton* button = ((UIButton*)self.avatarView.subviews[0]);
+            UIImageView* imageView = [[UIImageView alloc] initWithImage:image];
+            [button addSubview:imageView];
+            imageView.frame = button.bounds;
+            imageView.layer.cornerRadius = imageView.frame.size.height / 2;
+            imageView.clipsToBounds = YES;
+        } failure:^(NSError *error) {
+            NSLog(@"ERROR: %@", error);
+        }];
+        
+        [((UIButton*)self.avatarView.subviews[0]) setImageForState:UIControlStateNormal withURL:avatarUrl];
+        
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -127,14 +153,14 @@
 
 - (void)updateRadiusLabel:(NSInteger) radius
 {
-//    if(radius >= 1000)
-//    {
-//        self.blueViewLabel.text = [NSString stringWithFormat:@"%d км.", (int)(radius/1000)];
-//    }
-//    else
-//    {
-        self.blueViewLabel.text = [NSString stringWithFormat:@"%d м.", (int)radius];
-//    }
+    //    if(radius >= 1000)
+    //    {
+    //        self.blueViewLabel.text = [NSString stringWithFormat:@"%d км.", (int)(radius/1000)];
+    //    }
+    //    else
+    //    {
+    self.blueViewLabel.text = [NSString stringWithFormat:@"%d м.", (int)radius];
+    //    }
 }
 
 -(void)updateCirclePosition
@@ -152,6 +178,29 @@
     [self updateCirclePosition];
 }
 
+- (UIColor *)colorForType:(NSNumber *)type
+{
+    UIColor * color = UIColorFromRGB(0x4EBC1B);
+    if (![type isKindOfClass:[NSNull class]])
+    {
+        switch ([type intValue]) {
+            case 1:
+                color = UIColorFromRGB(0xF9D003);
+                break;
+            case 2:
+                color = UIColorFromRGB(0xF96A00);
+                break;
+            case 3:
+                color = UIColorFromRGB(0xF3E3E3);
+                break;
+            default:
+                color = UIColorFromRGB(0x4EBC1B);
+                break;
+        }
+    }
+    return color;
+}
+
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
@@ -162,6 +211,34 @@
             annotationView.image = [UIImage imageNamed:@"12"];
         }
         return annotationView;
+    }
+    else if ([annotation isKindOfClass:[HMUserAnnotation class]])
+    {
+        NSDictionary * user = ((HMUserAnnotation *)annotation).userInfo;
+        if(user[@"photo_url"])
+        {
+            MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"friend"];
+            if(!annotationView) {
+                annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"friend"];
+                annotationView.canShowCallout = NO;
+            }
+            
+            UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 24.0, 24.0)];
+            view.layer.cornerRadius = 12.0;
+            view.backgroundColor = [self colorForType:user[@"type"]];
+            
+            UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(2.0, 2.0, 20.0, 20.0)];
+            imageView.layer.cornerRadius = 12.0;
+            imageView.clipsToBounds = YES;
+            [imageView setImageWithURL:[NSURL URLWithString:user[@"photo_url"]]];
+            [view addSubview:imageView];
+            
+            annotationView.frame = view.bounds;
+            [annotationView addSubview:view];
+            
+            return annotationView;
+        }
+        return nil;
     }
     return nil;
 }
@@ -194,9 +271,22 @@
 
 - (void)showUsers:(NSArray *)users
 {
+    [self.mapView removeAnnotations:self.anotations];
+    [self.anotations removeAllObjects];
+    
+    NSArray * ids = [users valueForKeyPath:@"@unionOfObjects.id"];
+    NSString * query = [NSString stringWithFormat:@"SELECT * FROM friends WHERE _id IN ('%@')", [ids componentsJoinedByString:@"', '"]];
+    NSArray * friends = [[HMDataBase sharedInstance] arrayFromQueryWithSQL:query args:nil];
+    for (NSDictionary * user in friends)
+    {
+        CLLocationCoordinate2D coor = CLLocationCoordinate2DMake([user[@"latitude"] doubleValue], [user[@"longitude"] doubleValue]);
+        HMUserAnnotation *annotation = [[HMUserAnnotation alloc] initWithCoordinate:coor];
+        annotation.userInfo = user;
+        [self.anotations addObject:annotation];
+    }
+    [self.mapView addAnnotations:self.anotations];
     
 }
-
 #pragma mark - Touch Events
 
 -(void)animateControlView
@@ -286,7 +376,7 @@
     [self.radiusSlider setValue:index animated:NO];
     NSNumber *number = _radiusAvailableValues[index];
     NSInteger radius = [number intValue];
-//    [self updateRadiusLabel:radius];
+    //    [self updateRadiusLabel:radius];
     self.radius = radius;
     [self updateCirclePosition];
     

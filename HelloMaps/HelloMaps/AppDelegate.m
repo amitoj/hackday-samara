@@ -171,7 +171,7 @@
         }
     }
     
-    VKRequest * userReq = [[VKApi users] get];
+    VKRequest * userReq = [[VKApi users] get:@{VK_API_FIELDS: VK_API_PHOTO}];
     [userReq executeWithResultBlock:^(VKResponse *response) {
         [[NSUserDefaults standardUserDefaults] setObject:response.json[0] forKey:@"user"];
         [[NSUserDefaults standardUserDefaults] synchronize];
