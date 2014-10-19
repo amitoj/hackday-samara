@@ -21,6 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x0084FD)];
     [VKSdk initializeWithDelegate:self andAppId:VK_APP_ID];
     if ([VKSdk wakeUpSession] && [VKSdk isLoggedIn])
     {
