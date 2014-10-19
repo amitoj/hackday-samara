@@ -13,6 +13,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "HMFriendViewCell.h"
 #import "HMAuthorizationController.h"
+#import "HMSessionManager.h"
 
 @interface HMFriendsListController ()
 @property (nonatomic, strong) NSMutableDictionary * cursors;
@@ -101,13 +102,40 @@
                                                                            friend[@"photo"] ?: [NSNull null]]];
                     }
                 // запрос состояний друзей
-                    [self updateCursors];
-                    [self.tableView reloadData];
+                    [[HMSessionManager sharedInstance] getFriendsRadiusWithCompletionBlock:^(NSURLSessionDataTask *task, id responceObject, NSError *error) {
+                        if([responceObject isKindOfClass:[NSArray class]])
+                        {
+                            NSArray * friendsInfo = responceObject;
+                            for (NSDictionary * friendInfo in friendsInfo) {
+                                [[HMDataBase sharedInstance] executeQueryWithSQL:@"UPDATE friends SET radius = ? WHERE _id = ?"
+                                                                            args:@[friendInfo[@"radius"],
+                                                                                   friendInfo[@"id"]]];
+                            }
+                        }
+                        [self updateCursors];
+                        [self.tableView reloadData];
+                    }];
                 } errorBlock:^(NSError *error) {
                     NSLog(@"get frieds list error %@", error);
                 }];
             } errorBlock:^(NSError *error) {
                 NSLog(@"get frieds ids error %@", error);
+            }];
+        }
+        else
+        {
+            [[HMSessionManager sharedInstance] getFriendsRadiusWithCompletionBlock:^(NSURLSessionDataTask *task, id responceObject, NSError *error) {
+                if([responceObject isKindOfClass:[NSArray class]])
+                {
+                    NSArray * friendsInfo = responceObject;
+                    for (NSDictionary * friendInfo in friendsInfo) {
+                        [[HMDataBase sharedInstance] executeQueryWithSQL:@"UPDATE friends SET radius = ? WHERE _id = ?"
+                                                                    args:@[friendInfo[@"radius"],
+                                                                           friendInfo[@"id"]]];
+                    }
+                }
+                [self updateCursors];
+                [self.tableView reloadData];
             }];
         }
     }

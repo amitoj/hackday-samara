@@ -7,45 +7,7 @@
 //
 
 #import "HMSessionManager.h"
-
-@interface HMHTTPRequestSerializer : AFHTTPRequestSerializer
-
-@end
-
-@implementation HMHTTPRequestSerializer
-
-- (NSURLRequest *)requestBySerializingRequest:(NSURLRequest *)request
-                               withParameters:(id)parameters
-                                        error:(NSError *__autoreleasing *)error
-{
-    NSParameterAssert(request);
-    
-    NSMutableURLRequest *mutableRequest = [request mutableCopy];
-    
-    [self.HTTPRequestHeaders enumerateKeysAndObjectsUsingBlock:^(id field, id value, BOOL * __unused stop) {
-        if (![request valueForHTTPHeaderField:field]) {
-            [mutableRequest setValue:value forHTTPHeaderField:field];
-        }
-    }];
-    
-    if (parameters) {
-        NSString *query = nil;
-        NSMutableArray * params = [NSMutableArray array];
-        for (id param in [parameters allKeys]) {
-            [params addObject:[NSString stringWithFormat:@"\"%@\":\"%@\"", param, [parameters objectForKey:param]]];
-        }
-        if(params.count > 0)
-        {
-            query = [NSString stringWithFormat:@"\"item={%@}\"", [params componentsJoinedByString:@","]];
-        }
-        [mutableRequest setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-    
-    return mutableRequest;
-}
-
-@end
-
+#import "HMDataBase.h"
 
 @implementation HMSessionManager
 
@@ -75,8 +37,7 @@
     self = [super initWithBaseURL:url sessionConfiguration:configuration];
     if (self)
     {
-        self.requestSerializer = [HMHTTPRequestSerializer serializer];;
-        
+        self.requestSerializer = [AFJSONRequestSerializer serializer];
         // success и failure будут выполняться в бэкграунде
         self.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     }
@@ -106,14 +67,73 @@
     NSDictionary * userInfo = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
     if(userInfo)
     {
+        NSMutableDictionary * params = [NSMutableDictionary dictionary];
+        params[@"id"] = userInfo[@"id"]? : @"";
+        params[@"status"] = userInfo[@"status"]? : @"";
+        params[@"type"] = userInfo[@"type"]? : @(0);
+        params[@"latitude"] = userInfo[@"latitude"]? : @(0.0);
+        params[@"longitude"] = userInfo[@"longitude"]? : @(0.0);
+        params[@"radius"] = userInfo[@"radius"]? : @(0);
         task = [self POST:@"/set"
-               parameters:userInfo
+               parameters:params
                   success:^(NSURLSessionDataTask *task, id responseObject) {
                       NSLog(@"/set RESPONCE %@", responseObject);
                       completionBlock(task, nil);
                   } failure:^(NSURLSessionDataTask *task, NSError *error) {
                       NSLog(@"/set ERROR %@", error);
-                      completionBlock(task, nil);
+                      completionBlock(task, error);
+                  }];
+        [self logTask:task];
+        
+    }
+    return task;
+}
+
+- (NSURLSessionDataTask *) getFriendsRadiusWithCompletionBlock:(void (^)(NSURLSessionDataTask *task, id responseObject, NSError * error))completionBlock
+{
+    NSURLSessionDataTask * task = nil;
+    NSArray * friends = [[HMDataBase sharedInstance] arrayFromQueryWithSQL:@"SELECT _id FROM friends" args:nil];
+    if(friends.count > 0)
+    {
+        friends = [friends valueForKeyPath:@"@unionOfObjects._id"];
+        task = [self POST:@"/friends"
+               parameters:@{@"id":friends}
+                  success:^(NSURLSessionDataTask *task, id responseObject) {
+                      NSLog(@"/friend RESPONCE %@", responseObject);
+                      completionBlock(task, responseObject, nil);
+                  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                      NSLog(@"/friend ERROR %@", error);
+                      completionBlock(task, nil, error);
+                  }];
+        [self logTask:task];
+        
+    }
+    return task;
+}
+
+- (NSURLSessionDataTask *)getNearWithCompletionBlock:(void (^)(NSURLSessionDataTask *task, id responseObject, NSError * error))completionBlock
+{
+    NSURLSessionDataTask * task = nil;
+    NSDictionary * userInfo = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
+    if(userInfo)
+    {
+        NSMutableDictionary * params = [NSMutableDictionary dictionary];
+        params[@"id"] = userInfo[@"id"]? : @"";
+        params[@"status"] = userInfo[@"status"]? : @"";
+        params[@"type"] = userInfo[@"type"]? : @(0);
+        params[@"latitude"] = userInfo[@"latitude"]? : @(0.0);
+        params[@"longitude"] = userInfo[@"longitude"]? : @(0.0);
+        params[@"radius"] = userInfo[@"radius"]? : @(100000);
+        task = [self POST:@"/near"
+               parameters:params
+                  success:^(NSURLSessionDataTask *task, id responseObject) {
+                      NSLog(@"/friend RESPONCE %@", responseObject);
+                      completionBlock(task, responseObject, nil);
+                  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                      NSLog(@"/friend ERROR %@", error);
+                      completionBlock(task, nil, error);
+                      NSString *s = [[NSString alloc] initWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] encoding:NSUTF8StringEncoding];
+                      NSLog(@"AAAA %@", s);
                   }];
         [self logTask:task];
         

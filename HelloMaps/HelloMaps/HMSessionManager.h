@@ -12,5 +12,7 @@
 +(instancetype)sharedInstance;
 
 - (NSURLSessionDataTask *) setUserDataWithCompletionBlock:(void (^)(NSURLSessionDataTask *task, NSError * error))completionBlock;
+- (NSURLSessionDataTask *) getFriendsRadiusWithCompletionBlock:(void (^)(NSURLSessionDataTask *task, id responseObject, NSError * error))completionBlock;
+- (NSURLSessionDataTask *)getNearWithCompletionBlock:(void (^)(NSURLSessionDataTask *task, id responseObject, NSError * error))completionBlock;
 
 @end

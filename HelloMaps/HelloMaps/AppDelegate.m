@@ -34,6 +34,7 @@
                 [navController setViewControllers:@[mapController] animated:NO];
             }
         }
+        [NSTimer scheduledTimerWithTimeInterval:120.0 target:self selector:@selector(updateNearestFriends) userInfo:nil repeats:YES];
     }
     else
     {
@@ -59,7 +60,15 @@
         }];
         [self.locationTracker startUpdatingLocation];
     }
+    
     return YES;
+}
+
+- (void)updateNearestFriends
+{
+    [[HMSessionManager sharedInstance] getNearWithCompletionBlock:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    
+    }];
 }
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
