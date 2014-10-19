@@ -73,7 +73,7 @@
         params[@"type"] = userInfo[@"type"]? : @(0);
         params[@"latitude"] = userInfo[@"latitude"]? : @(0.0);
         params[@"longitude"] = userInfo[@"longitude"]? : @(0.0);
-        params[@"radius"] = userInfo[@"radius"]? : @(0);
+        params[@"radius"] = userInfo[@"radius"]? : @(500);
         task = [self POST:@"/set"
                parameters:params
                   success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -123,7 +123,7 @@
         params[@"type"] = userInfo[@"type"]? : @(0);
         params[@"latitude"] = userInfo[@"latitude"]? : @(0.0);
         params[@"longitude"] = userInfo[@"longitude"]? : @(0.0);
-        params[@"radius"] = userInfo[@"radius"]? : @(100000);
+        params[@"radius"] = userInfo[@"radius"]? : @(500);
         task = [self POST:@"/near"
                parameters:params
                   success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -132,8 +132,6 @@
                   } failure:^(NSURLSessionDataTask *task, NSError *error) {
                       NSLog(@"/friend ERROR %@", error);
                       completionBlock(task, nil, error);
-                      NSString *s = [[NSString alloc] initWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] encoding:NSUTF8StringEncoding];
-                      NSLog(@"AAAA %@", s);
                   }];
         [self logTask:task];
         

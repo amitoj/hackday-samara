@@ -10,27 +10,42 @@
 #import "HMFriendsListController.h"
 #import "HMLocationTracker.h"
 #import "HMSessionManager.h"
+#import "HMUserAnnotation.h"
 
 @interface HMMapViewController ()
 {
     BOOL _isControlViewShown;
-    CGFloat _offsetY;
     CGFloat _yPosition;
-    CGFloat _newYPosition;
-    CGFloat _firstTouchPositionY;
-    CGRect _blueViewFrame;
-    BOOL _isAnimationEnded;
+    CGFloat _blueViewWidth;
+    NSArray * _radiusAvailableValues;
 }
 @property (weak, nonatomic) IBOutlet UILabel *blueViewLabel;
 @property (weak, nonatomic) IBOutlet UIView *fingerPlaceView;
+@property (weak, nonatomic) IBOutlet UISlider *radiusSlider;
 @property (nonatomic, strong) CLLocationManager* locationManager;
 @property (weak, nonatomic) IBOutlet UIView *blueView;
 @property (weak, nonatomic) IBOutlet UILabel *notificationsCountLabel;
+@property (nonatomic) CGFloat radius;
 
 @property (nonatomic, strong) HMLocationTracker *locationTracker;
 @end
 
 @implementation HMMapViewController
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if(self)
+    {
+        self.radius = 0.0;
+        NSMutableArray * values = [NSMutableArray array];
+        for (int i = 0; i < 2000; i+=50) {
+            [values addObject:@(i)];
+        }
+        _radiusAvailableValues = values;
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -40,12 +55,7 @@
     self.notificationsCountLabel.clipsToBounds = YES;
     self.notificationsCountLabel.layer.cornerRadius = 9.0;
     _isControlViewShown = NO;
-    _isAnimationEnded = YES;
-    _offsetY = 0;
-    CGRect frame = self.bottomControlView.frame;
-    _yPosition = frame.origin.y;
-    _newYPosition = frame.origin.y;
-    _blueViewFrame = self.blueView.frame;
+    _blueViewWidth = self.blueView.frame.size.width;
     self.locationManager = [[CLLocationManager alloc] init];
     self.mapView.delegate = self;
     self.locationManager.delegate = self;
@@ -57,6 +67,13 @@
     }
 #endif
     [self.locationManager startUpdatingLocation];
+    
+    NSInteger numberOfSteps = [_radiusAvailableValues count] - 1;
+    self.radiusSlider.maximumValue = numberOfSteps;
+    self.radiusSlider.minimumValue = 0;
+    self.radiusSlider.continuous = YES;
+    self.radiusSlider.value = self.radius;
+    [self updateRadiusLabel:self.radius];
     
     self.mapView.showsUserLocation = YES;
     [self.mapView setMapType:MKMapTypeStandard];
@@ -73,6 +90,8 @@
         [[HMSessionManager sharedInstance] setUserDataWithCompletionBlock:^(NSURLSessionDataTask *task, NSError *error) {
         }];
     }];
+    self.locationManager.distanceFilter = kCLDistanceFilterNone; //Whenever we move
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationTracker startUpdatingLocation];
     
 }
@@ -92,11 +111,6 @@
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    self.locationManager.distanceFilter = kCLDistanceFilterNone; //Whenever we move
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [self.locationManager startUpdatingLocation];
-    NSLog(@"%@", [self deviceLocation]);
-    
     //View Area
     MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
     region.center.latitude = self.locationManager.location.coordinate.latitude;
@@ -105,12 +119,64 @@
     region.span.longitudeDelta = 0.005f;
     [self.mapView setRegion:region animated:YES];
     
+    CGRect frame = self.bottomControlView.frame;
+    _yPosition = frame.origin.y;
+    
+    [self updateCirclePosition];
+}
+
+- (void)updateRadiusLabel:(NSInteger) radius
+{
+//    if(radius >= 1000)
+//    {
+//        self.blueViewLabel.text = [NSString stringWithFormat:@"%d км.", (int)(radius/1000)];
+//    }
+//    else
+//    {
+        self.blueViewLabel.text = [NSString stringWithFormat:@"%d м.", (int)radius];
+//    }
+}
+
+-(void)updateCirclePosition
+{
+    [self.mapView removeOverlays: [self.mapView overlays]];
+    
+    MKCircle * circle = [MKCircle circleWithCenterCoordinate:self.mapView.userLocation.location.coordinate radius:self.radius];
+    [self.mapView addOverlay:circle];
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
     [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
+    [self updateCirclePosition];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"user"];
+        if(!annotationView) {
+            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"user"];
+            annotationView.canShowCallout = NO;
+            annotationView.image = [UIImage imageNamed:@"12"];
+        }
+        return annotationView;
+    }
+    return nil;
+}
+
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
+{
+    if ([overlay isKindOfClass:[MKCircle class]]){
+        MKCircle *circle = (MKCircle *)overlay;
+        MKCircleRenderer *circleR = [[MKCircleRenderer alloc] initWithCircle:circle];
+        circleR.fillColor = UIColorFromRGB(0x0084FD);
+        circleR.alpha = 0.5;
+        return circleR;
+    } else{
+        return nil;
+    }
 }
 
 - (NSString *)deviceLocation {
@@ -126,114 +192,46 @@
     return [NSString stringWithFormat:@"%f", self.locationManager.location.altitude];
 }
 
-#pragma mark - Touch Events
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UITouch *touch = [[event allTouches] anyObject];
-    CGPoint touchLocation = [touch locationInView:self.view];
-    _firstTouchPositionY = touchLocation.y;
-}
-
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+- (void)showUsers:(NSArray *)users
 {
     
-    UITouch *touch = [[event allTouches] anyObject];
-    CGPoint touchLocation = [touch locationInView:self.view];
-    NSLog(@"%f", touchLocation.y);
-    for (UIView *view in self.view.subviews)
-    {
-        if (view == self.bottomControlView &&
-            CGRectContainsPoint(view.frame, touchLocation))
-        {
-            _offsetY = touchLocation.y - _firstTouchPositionY;
-            
-            CGRect frame = self.bottomControlView.frame;
-            if (!_isControlViewShown)
-            {
-                _offsetY = _offsetY > 0.0 ? 0.0 : _offsetY;
-                _offsetY = _offsetY < -51.0 ? -51.0 : _offsetY;
-            }
-            else
-            {
-                _offsetY = _offsetY > 51.0 ? 51.0 : _offsetY;
-                _offsetY = _offsetY < 0.0 ? 0.0 : _offsetY;
-            }
-            NSLog(@"%hhd, %f",_isControlViewShown, _offsetY);
-            frame.origin.y = _newYPosition + _offsetY;
-            self.bottomControlView.frame = frame;
-        }
-    }
 }
 
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    __weak typeof(self) weakSelf = self;
-    if (!_isControlViewShown)
-    {
-        _isControlViewShown =  _offsetY == -51.0 ? YES : [self animateControlView];
-        _newYPosition = _yPosition - 51.0;
-        if (_isControlViewShown)
-        {
-            _isAnimationEnded = NO;
-            [UIView animateWithDuration:0.3 animations:^{
-                CGRect newFrame = CGRectMake(0, _blueViewFrame.origin.y, weakSelf.bottomControlView.frame.size.width, _blueViewFrame.size.height);
-                weakSelf.blueView.frame = newFrame;
-            } completion:^(BOOL finished){
-                _isAnimationEnded = YES;
-            }];
-        }
-    }
-    else
-    {
-        _isControlViewShown  = _offsetY == 51.0 ? NO : [self animateControlView];
-        _newYPosition = _yPosition;
-        if (!_isControlViewShown)
-        {
-            _isAnimationEnded = NO;
-            [UIView animateWithDuration:0.3 animations:^{
-                weakSelf.blueView.frame = _blueViewFrame;
-            } completion:^(BOOL finished){
-                _isAnimationEnded = YES;
-            }];
-        }
-    }
-    _offsetY = 0.0;
-}
+#pragma mark - Touch Events
 
--(BOOL)animateControlView
+-(void)animateControlView
 {
-    _isAnimationEnded = NO;
     CGFloat duration = 0.3;
-    BOOL result = YES;
     CGRect frame = self.bottomControlView.frame;
+    CGRect blueFrame = self.blueView.frame;
     __weak typeof(self) weakSelf = self;
     if  (_isControlViewShown)
     {
         frame.origin.y = _yPosition;
-        result = NO;
+        blueFrame.size.width = _blueViewWidth;
+        blueFrame.origin.x = CGRectGetMidX(self.bottomControlView.frame) - CGRectGetMidX(blueFrame);
         [UIView animateWithDuration:duration animations:^{
             weakSelf.bottomControlView.frame = frame;
         } completion:^(BOOL finished) {
-            _isAnimationEnded = YES;
         }];
         [UIView animateWithDuration:duration delay:duration options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            weakSelf.blueView.frame = _blueViewFrame;
+            weakSelf.blueView.frame = blueFrame;
         } completion:nil];
     }
     else
     {
         frame.origin.y = _yPosition - 51.0;
+        blueFrame.size.width = self.bottomControlView.frame.size.width;
+        blueFrame.origin.x = 0.0;
         [UIView animateWithDuration:duration animations:^{
             weakSelf.bottomControlView.frame = frame;
         } completion:^(BOOL finished) {
-            _isAnimationEnded = YES;
         }];
         [UIView animateWithDuration:duration delay:duration options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            CGRect newFrame = CGRectMake(0, _blueViewFrame.origin.y, weakSelf.bottomControlView.frame.size.width, _blueViewFrame.size.height);
-            weakSelf.blueView.frame = newFrame;
+            weakSelf.blueView.frame = blueFrame;
         } completion:nil];
     }
-    return result;
+    _isControlViewShown = !_isControlViewShown;
 }
 
 #pragma mark - Actions
@@ -257,6 +255,42 @@
     HMFriendsListController * friendsListController = [HMFriendsListController new];
     [friendsListController loadFriendsListFromVK];
     [self.navigationController pushViewController:friendsListController animated:YES];
+}
+
+- (void) updateUsersInfo
+{
+    __weak typeof(self)weakSelf = self;
+    [[HMSessionManager sharedInstance] setUserDataWithCompletionBlock:^(NSURLSessionDataTask *task, NSError *error) {
+        [[HMSessionManager sharedInstance] getNearWithCompletionBlock:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+            if([responseObject isKindOfClass:[NSArray class]])
+            {
+                __strong typeof(weakSelf)strongSelf = weakSelf;
+                if(strongSelf)
+                {
+                    [weakSelf showUsers:responseObject];
+                }
+            }
+        }];
+    }];
+}
+
+- (IBAction)sliderShowBtClick:(id)sender
+{
+    [self animateControlView];
+}
+
+- (IBAction)sliderValueChange:(id)sender
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(updateUsersInfo) object:nil];
+    NSUInteger index = (NSUInteger)(self.radiusSlider.value + 0.5);
+    [self.radiusSlider setValue:index animated:NO];
+    NSNumber *number = _radiusAvailableValues[index];
+    NSInteger radius = [number intValue];
+//    [self updateRadiusLabel:radius];
+    self.radius = radius;
+    [self updateCirclePosition];
+    
+    [self performSelector:@selector(updateUsersInfo) withObject:nil afterDelay:3.0];
 }
 
 @end

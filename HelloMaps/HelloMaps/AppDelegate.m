@@ -35,6 +35,33 @@
             }
         }
         [NSTimer scheduledTimerWithTimeInterval:120.0 target:self selector:@selector(updateNearestFriends) userInfo:nil repeats:YES];
+        
+        
+        if ([launchOptions objectForKey:UIApplicationLaunchOptionsLocationKey])
+        {
+            self.locationTracker = [[HMLocationTracker alloc] init];
+            __weak HMLocationTracker *lc = self.locationTracker;
+            __weak typeof(self) weakSelf = self;
+            [self.locationTracker setLocationUpdatedInBackground:^(CLLocation *location) {
+                //тестовый блок, будет показывать local notification с координатами
+                UILocalNotification *notification = [[UILocalNotification alloc] init];
+                notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:15];
+                notification.alertBody = [NSString stringWithFormat:@"New location: %@", location];
+                [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+                //отправка данных после входа в систему
+                [[HMSessionManager sharedInstance] setUserDataWithCompletionBlock:^(NSURLSessionDataTask *task, NSError *error) {
+                    [[HMSessionManager sharedInstance] getNearWithCompletionBlock:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+                        if([responseObject isKindOfClass:[NSArray class]])
+                        {
+                            [[weakSelf mapViewController] showUsers:responseObject];
+                        }
+                        [lc endBackgroundTask];
+                    }];
+                }];
+                
+            }];
+            [self.locationTracker startUpdatingLocation];
+        }
     }
     else
     {
@@ -42,32 +69,30 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
-    if ([launchOptions objectForKey:UIApplicationLaunchOptionsLocationKey])
-    {
-        self.locationTracker = [[HMLocationTracker alloc] init];
-        __weak HMLocationTracker *lc = self.locationTracker;
-        [self.locationTracker setLocationUpdatedInBackground:^(CLLocation *location) {
-            //тестовый блок, будет показывать local notification с координатами
-            UILocalNotification *notification = [[UILocalNotification alloc] init];
-            notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:15];
-            notification.alertBody = [NSString stringWithFormat:@"New location: %@", location];
-            [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-            //отправка данных после входа в систему
-            [[HMSessionManager sharedInstance] setUserDataWithCompletionBlock:^(NSURLSessionDataTask *task, NSError *error) {
-                [lc endBackgroundTask];
-            }];
-
-        }];
-        [self.locationTracker startUpdatingLocation];
-    }
-    
     return YES;
+}
+
+- (HMMapViewController *)mapViewController
+{
+    UIViewController * rootViewController = [[self window] rootViewController];
+    if([rootViewController isKindOfClass:[UINavigationController class]])
+    {
+        UINavigationController * navController = (UINavigationController*)rootViewController;
+        if([navController.topViewController isKindOfClass:[HMMapViewController class]])
+        {
+            return (HMMapViewController *)navController.topViewController;
+        }
+    }
+    return nil;
 }
 
 - (void)updateNearestFriends
 {
     [[HMSessionManager sharedInstance] getNearWithCompletionBlock:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-    
+        if([responseObject isKindOfClass:[NSArray class]])
+        {
+            [[self mapViewController] showUsers:responseObject];
+        }
     }];
 }
 

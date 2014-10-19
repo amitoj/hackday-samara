@@ -15,5 +15,5 @@
 @interface HMMapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIView *bottomControlView;
-
+- (void)showUsers:(NSArray *)users;
 @end

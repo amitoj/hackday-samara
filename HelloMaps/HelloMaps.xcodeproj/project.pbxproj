@@ -26,6 +26,9 @@
 		863C9BD519F2E3D4009B4B5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 863C9BD219F2E3D4009B4B5F /* Main.storyboard */; };
 		863C9BD819F2FF10009B4B5F /* HMLocationTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 863C9BD719F2FF10009B4B5F /* HMLocationTracker.m */; };
 		863C9BDB19F3070F009B4B5F /* HMSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 863C9BDA19F3070F009B4B5F /* HMSessionManager.m */; };
+		863C9BDE19F357C4009B4B5F /* HMUserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 863C9BDD19F357C4009B4B5F /* HMUserAnnotation.m */; };
+		863C9BE319F3867C009B4B5F /* HMFriendProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 863C9BE019F3867C009B4B5F /* HMFriendProfileViewController.m */; };
+		863C9BE419F3867C009B4B5F /* HMProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 863C9BE219F3867C009B4B5F /* HMProfileViewController.m */; };
 		86C712DD19F1AD9D00B48369 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C712DC19F1AD9D00B48369 /* main.m */; };
 		86C712E019F1AD9D00B48369 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C712DF19F1AD9D00B48369 /* AppDelegate.m */; };
 		86C712EB19F1AD9D00B48369 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86C712EA19F1AD9D00B48369 /* Images.xcassets */; };
@@ -80,6 +83,12 @@
 		863C9BD719F2FF10009B4B5F /* HMLocationTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMLocationTracker.m; sourceTree = "<group>"; };
 		863C9BD919F3070F009B4B5F /* HMSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSessionManager.h; sourceTree = "<group>"; };
 		863C9BDA19F3070F009B4B5F /* HMSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSessionManager.m; sourceTree = "<group>"; };
+		863C9BDC19F357C4009B4B5F /* HMUserAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMUserAnnotation.h; sourceTree = "<group>"; };
+		863C9BDD19F357C4009B4B5F /* HMUserAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMUserAnnotation.m; sourceTree = "<group>"; };
+		863C9BDF19F3867C009B4B5F /* HMFriendProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMFriendProfileViewController.h; sourceTree = "<group>"; };
+		863C9BE019F3867C009B4B5F /* HMFriendProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMFriendProfileViewController.m; sourceTree = "<group>"; };
+		863C9BE119F3867C009B4B5F /* HMProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMProfileViewController.h; sourceTree = "<group>"; };
+		863C9BE219F3867C009B4B5F /* HMProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMProfileViewController.m; sourceTree = "<group>"; };
 		86C712D719F1AD9D00B48369 /* HelloMaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloMaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86C712DB19F1AD9D00B48369 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86C712DC19F1AD9D00B48369 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -219,8 +228,14 @@
 				863C9BCF19F2E118009B4B5F /* Friends */,
 				1890BA2C19F24506008A880C /* HMAuthorizationController.h */,
 				1890BA2D19F24506008A880C /* HMAuthorizationController.m */,
+				863C9BDF19F3867C009B4B5F /* HMFriendProfileViewController.h */,
+				863C9BE019F3867C009B4B5F /* HMFriendProfileViewController.m */,
+				863C9BE119F3867C009B4B5F /* HMProfileViewController.h */,
+				863C9BE219F3867C009B4B5F /* HMProfileViewController.m */,
 				18B4536C19F25A6A0031B840 /* HMMapViewController.h */,
 				18B4536D19F25A6A0031B840 /* HMMapViewController.m */,
+				863C9BDC19F357C4009B4B5F /* HMUserAnnotation.h */,
+				863C9BDD19F357C4009B4B5F /* HMUserAnnotation.m */,
 				863C9BC719F2E0ED009B4B5F /* HMDataBase.h */,
 				863C9BC819F2E0ED009B4B5F /* HMDataBase.m */,
 				863C9BD619F2FF10009B4B5F /* HMLocationTracker.h */,
@@ -416,7 +431,9 @@
 				86C712E019F1AD9D00B48369 /* AppDelegate.m in Sources */,
 				863C9BC219F2E0DC009B4B5F /* SQLite3Cursor.m in Sources */,
 				86C712DD19F1AD9D00B48369 /* main.m in Sources */,
+				863C9BDE19F357C4009B4B5F /* HMUserAnnotation.m in Sources */,
 				18B4536E19F25A6A0031B840 /* HMMapViewController.m in Sources */,
+				863C9BE419F3867C009B4B5F /* HMProfileViewController.m in Sources */,
 				863C9BD819F2FF10009B4B5F /* HMLocationTracker.m in Sources */,
 				863C9BC519F2E0DC009B4B5F /* SQLite3Query.m in Sources */,
 				86C7131719F24B0300B48369 /* HMFriendsListController.m in Sources */,
@@ -425,6 +442,7 @@
 				863C9BC019F2E0DC009B4B5F /* sqlite3.c in Sources */,
 				863C9BC919F2E0ED009B4B5F /* HMDataBase.m in Sources */,
 				863C9BDB19F3070F009B4B5F /* HMSessionManager.m in Sources */,
+				863C9BE319F3867C009B4B5F /* HMFriendProfileViewController.m in Sources */,
 				863C9BCD19F2E10D009B4B5F /* HMFriendViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
